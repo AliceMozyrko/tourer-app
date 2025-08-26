@@ -18,7 +18,6 @@ const photos = [
   { src: "/img/photos/IMG_20210701_183906_1-min.jpg", alt: "face-to-face", description: "Face-to-face seating" },
   { src: "/img/photos/IMG_20210701_114923-min.jpg", alt: "trunk", description: "Trunk space" },
   { src: "/img/photos/IMG_20210604_160417-min.jpg", alt: "driver-row", description: "Driver row" },
-  { src: "/img/photos/IMG_20210605_105920-min.jpg", alt: "1-row", description: "1st row seats" },
   { src: "/img/photos/IMG_20240729_164038_1-min.jpg", alt: "2-row", description: "1st row seats" },
   { src: "/img/photos/IMG_20240621_174544-min.jpg", alt: "back-seats", description: "2nd row seats" },
   { src: "/img/photos/IMG_20240702_164457-min.jpg", alt: "door-entry", description: "Door entry" },
