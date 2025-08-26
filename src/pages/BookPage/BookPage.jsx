@@ -1,4 +1,4 @@
-import Navigation from "../../Components/Navigation/Navigation"
+import Navigation from "../../components/Navigation/Navigation"
 import Footer from "../../components/Footer/Footer"
 
 const BookPage = () => {
