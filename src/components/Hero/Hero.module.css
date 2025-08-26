@@ -1,0 +1,29 @@
+.hero{
+  background: url(../../../public/img/hero-tourer.png) no-repeat 20%center;
+  background-size: cover;
+  height: 700px;
+  width: 100%;
+}
+
+.title{
+  font-size: 45px;
+  color: #f7fffb;
+  margin-top: 50px;
+  margin-left: 70px;
+  letter-spacing: 3px;
+  margin-bottom: 10px;
+}
+
+.subtitle{
+  font-size: 18px;
+  color: #f7fffb;
+  padding-left: 70px;
+  margin-bottom: 50px;
+}
+
+.btn{
+  font-size: 18px;
+  width: 150px;
+  height: 50px;
+  margin-left: 70px;
+}

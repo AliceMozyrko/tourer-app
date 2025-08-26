@@ -1,0 +1,15 @@
+.container{
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  gap: 90px;
+}
+
+/* .frame{
+  background: 
+  linear-gradient(to right, #ff6e25 70%, #338551 30%) no-repeat,
+    rgb(237, 235, 235); 
+  background-size: 100% 50%; 
+  background-position: top;
+} */

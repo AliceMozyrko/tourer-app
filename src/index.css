@@ -1,0 +1,65 @@
+:root{
+  --color-primary: #fc6e16; /* Темно-помаранчевий */
+  --color-secondary: #008000; /* Темно-зелений */
+  --color-tertiary: #FFFFFF; /* Білий */
+  --color-background-light: #F8F8F8; /* Світло-сірий фон */
+
+  --font-family-primary: 'Arial', sans-serif;
+  --font-family-secondary: 'Helvetica', sans-serif;
+
+  font-family: var(--font-manrope);
+  line-height: 1.6;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+}
+
+body {
+  /* padding: 20px; */
+  color: var(--color-text-dark);
+}
+
+body {
+  font-family: -apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex-grow: 1;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+  color: black;
+}
+
+ul,
+ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+button {
+  cursor: pointer;
+}
+
+a{
+  text-decoration: none;
+}
