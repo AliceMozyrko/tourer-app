@@ -26,10 +26,10 @@ const AboutUs = ({id}) => {
           className={css.slider}
         >
         <SwiperSlide>
-          <img src="../../../public/img/license/ФОП Ліцензія англ. до 27.09.2025-min.pdf" alt="eng-license" className={css.image} />            
+          <img src="../../../public/img/license/eng-license.jpg" alt="eng-license" className={css.image} />            
           </SwiperSlide>          
         <SwiperSlide>
-          <img src="../../../public/img/license/ФОП Ліцензія укр до 27.09.2025-min.pdf" alt="ua-license" className={css.image} />           
+          <img src="../../../public/img/license/ua-license.jpg" alt="ua-license" className={css.image} />           
         </SwiperSlide> 
         </Swiper>
     </div>
