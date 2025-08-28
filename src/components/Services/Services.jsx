@@ -95,8 +95,8 @@ const Services = ({id}) => {
           <li>Kyïv - Vienna</li>
           <li>Kyïv - Iași</li>
           <li>Kyïv - Suceava</li>
-          </ul>
           <p className={css.moreTxt}>And many more European cities</p>
+          </ul>
       </div>
 
       <div className={css.card}>

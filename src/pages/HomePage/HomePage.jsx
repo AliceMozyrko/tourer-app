@@ -13,7 +13,7 @@ const HomePage = () => {
         <AboutUs id="about"/>
         <OurCar id="car"/>
         <Services id="services" />
-    </div>
+      </div>
       <Footer/>
     </div>
     

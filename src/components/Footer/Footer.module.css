@@ -1,30 +1,55 @@
 .container{
   background-color: rgba(0, 0, 0, 0.81);
-  height: 150px;
-  padding: 0 70px;
+  height: 200px;
+  padding: 0 40px;
   display: flex;
+  flex-direction: column;
   align-items: center;
+  justify-content: space-between;
 }
 
 .logo {
   display: block;
   justify-content: flex-start;
-  width: 150px;
-  height: 140px;
+  width: 100px;
+  height: 100px;
 }
 
 .txt{
-  margin: 0 auto;
   color: rgb(218, 218, 218);
+  font-size: 14px;
+  margin-bottom: 30px;
 }
 
 .socials {
   display: flex;
   gap: 20px;
   cursor: pointer;
+  margin-bottom: 30px;
 }
 
 .socials a:hover {
   transform: scale(1.1);
   transition: transform 0.2s;
+}
+
+@media screen and (min-width: 768px) {
+  
+}
+
+@media screen and (min-width: 1158px) {
+  .container{
+  padding: 0 70px;
+  flex-direction: row;
+  height: 150px;
+}
+.txt{
+  font-size: 18px;
+  margin-bottom: 0;
+}
+.socials {
+  margin-bottom: 0;
+}
+
+
 }

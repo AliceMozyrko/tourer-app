@@ -1,30 +1,56 @@
 .hero{
   background: url(../../../public/img/hero-tourer.png) no-repeat 20%center;
   background-size: cover;
-  height: 700px;
+  height: 500px;
   width: 100%;
   margin-bottom: 90px;
 }
 
 .title{
-  font-size: 45px;
+  font-size: 30px;
   color: #f7fffb;
-  margin-top: 50px;
-  margin-left: 70px;
+  margin-left: 40px;
   letter-spacing: 3px;
   margin-bottom: 10px;
 }
 
 .subtitle{
-  font-size: 18px;
+  font-size: 14px;
   color: #f7fffb;
+  padding-left: 40px;
+  margin-bottom: 30px;
+}
+
+.btn{
+  font-size: 14px;
+  width: 100px;
+  height: 40px;
+  margin-left: 40px;
+}
+
+@media screen and (min-width: 768px) {
+  
+}
+
+@media screen and (min-width: 1158px) {
+  .hero{
+    height: 700px;
+  }
+  .title{
+  font-size: 45px;
+  margin-top: 50px;
+  margin-left: 70px;
+  }
+  .subtitle{
+  font-size: 18px;
   padding-left: 70px;
   margin-bottom: 50px;
 }
-
 .btn{
   font-size: 18px;
   width: 150px;
   height: 50px;
   margin-left: 70px;
+}
+
 }

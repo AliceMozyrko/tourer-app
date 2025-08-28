@@ -3,8 +3,7 @@
   position: relative;
   align-items: center;
   gap: 15px;
-  margin-bottom: 40px;
-  font-size: 40px;
+  font-size: 30px;
   font-weight: 700;
   color: black;
   padding-left: 20px;
@@ -23,9 +22,10 @@
   border-radius: 4px;
 }
 
-
 .descr{
   display: flex;
+  flex-direction: column;
+  gap: 30px;
   justify-content: space-between;
   align-items: center; 
   margin-bottom: 40px;
@@ -33,7 +33,7 @@
 
 .icons {
   display: flex;
-  gap: 50px;
+  gap: 30px;
   justify-content: center;
   flex-wrap: wrap;
 }
@@ -49,7 +49,7 @@
 .label {
   margin-top: 8px;
   font-size: 14px;
-  color: #333;
+  color: #2c2c2c;
 }
 
 .icon{
@@ -59,7 +59,7 @@
 }
 
 .txt{
-  font-size: 20px;
+  font-size: 18px;
 }
 
 .container {
@@ -76,16 +76,17 @@
 }
 
 .gallery{
-  max-width: 1244px;
+  max-width: 270px;
   margin: 0 auto;
 }
 
 .photoCard {
   position: relative;
-  height: 450px;  
+  height: 400px;  
   overflow: hidden;
   border-radius: 8px;
   cursor: pointer;
+  margin-bottom: 30px;
 }
 
 .photo {
@@ -100,7 +101,6 @@
   bottom: 0;
   left: 0;
   right: 0;
-  /* background: rgba(255, 110, 37, 0.9); */
   background: #338551;
   color: white;
   padding: 10px;
@@ -133,7 +133,7 @@
   width: 100%;
   max-height: 80vh;
   object-fit: contain;
-  border-radius: 10px;
+  border-radius: 8px;
   margin: 0 auto;
 }
 
@@ -157,7 +157,7 @@
 
 .modalSliderWrapper {
   width: 90%;
-  max-width: 1000px;
+  max-width: 300px;
 }
 
 :global(.slick-prev:before),
@@ -174,4 +174,37 @@
 :global(.slick-next) {
   right: -40px; 
   z-index: 2;
+}
+
+
+@media screen and (min-width: 768px) {
+  
+}
+
+@media screen and (min-width: 1158px) {
+  .title {
+  font-size: 40px;
+}
+
+.descr{
+  flex-direction: row;
+  gap: 0;
+}
+.icons {
+  gap: 50px;
+}
+.txt{
+  font-size: 20px;
+}
+.gallery{
+  max-width: 1244px;
+}
+.photoCard {
+  margin-bottom: 0;
+  height: 450px;  
+}
+.modalSliderWrapper {
+  max-width: 1000px;
+}
+
 }
