@@ -9,7 +9,7 @@ const BookPage = lazy(() => import("../pages/BookPage/BookPage"))
 
 function App() {
   return (
-    <div className={css.main}>
+    <div>
       <Suspense fallback={<Loader />} >
         <Routes>
           <Route path="/" element={<HomePage />} />
