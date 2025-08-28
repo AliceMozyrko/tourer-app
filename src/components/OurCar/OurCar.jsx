@@ -28,6 +28,23 @@ const photos = [
 const OurCar = ({id}) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalStartIndex, setModalStartIndex] = useState(0);
+  const [slidesToShow, setSlidesToShow] = useState(3);
+
+  useEffect(() => {
+    const updateSlides = () => {
+      if (window.innerWidth <= 768) {
+        setSlidesToShow(1);
+      } else if (window.innerWidth <= 1158) {
+        setSlidesToShow(2);
+      } else {
+        setSlidesToShow(3);
+      }
+    };
+
+    updateSlides(); 
+    window.addEventListener("resize", updateSlides);
+    return () => window.removeEventListener("resize", updateSlides);
+  }, []);
 
   const sliderRef = useRef(null);
   const modalSliderRef = useRef(null);
@@ -45,22 +62,12 @@ const OurCar = ({id}) => {
     dots: true,
     infinite: false,
     speed: 300,
-    slidesToShow: 3,
+    slidesToShow,
     slidesToScroll: 1,
     responsive: [
-    {
-      breakpoint: 1158, 
-      settings: {
-        slidesToShow: 2,
-      },
-    },
-    {
-      breakpoint: 768, 
-      settings: {
-        slidesToShow: 1,
-      },
-    },
-  ],
+      { breakpoint: 1158, settings: { slidesToShow: 2 } },
+      { breakpoint: 768, settings: { slidesToShow: 1 } }
+    ],
   };
 
   const modalSliderSettings = {
