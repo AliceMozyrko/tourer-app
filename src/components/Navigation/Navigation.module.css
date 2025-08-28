@@ -21,7 +21,7 @@
 .link {
   position: relative;
   color: #2c2c2c;
-  font-size: 12px;
+  font-size: 10px;
 }
 
 .link:hover,
@@ -38,8 +38,8 @@
 }
 
 @media screen and (min-width: 1158px) {
-  .container{
-    padding: 0 70px;
+.container{
+  padding: 0 70px;
   }
   .links {
   gap: 40px;
@@ -47,4 +47,43 @@
 .link {
   font-size: 18px;
 }
+}
+
+.burger {
+  display: none;
+  cursor: pointer;
+  margin-top: 50px;
+  z-index: 110; 
+}
+
+@media screen and (max-width: 768px) {
+  .links {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;          
+    background: rgba(0, 0, 0, 0.703);
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0;
+    margin-top: 0;
+    z-index: 100;
+  }
+  .link {
+  color: white;
+}
+  .showMenu {
+    display: flex;
+  }
+
+  .burger {
+    display: block;
+  }
+  .cross{
+    position: fixed;
+    right: 40px;
+  }
 }

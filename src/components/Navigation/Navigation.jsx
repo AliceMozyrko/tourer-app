@@ -1,53 +1,50 @@
-// import { Navbar, Nav, Container } from 'react-bootstrap';
+import { useState } from "react";
 import { NavLink } from "react-router-dom";
-import logo from "../../../public/img/logo.png";
 import { HashLink } from "react-router-hash-link";
-// import burger from "../../../assets/images/burger.png"
+import { FiMenu, FiX } from "react-icons/fi";
 import clsx from "clsx";
-import css from "./Navigation.module.css"
+import logo from "../../../public/img/logo.png";
+import css from "./Navigation.module.css";
 
-const makeLinkClass = ({isActive}) => {
-  return clsx(css.link, isActive && css.active)
-}
+const makeLinkClass = ({ isActive }) => {
+  return clsx(css.link, isActive && css.active);
+};
 
 const Navigation = () => {
-  
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleMenu = () => setIsOpen(!isOpen);
+  const closeMenu = () => setIsOpen(false);
+
   return (
-    // <Navbar expand="md" className={clsx(css.maindiv)}>
-    //   {/* <Container fluid className="d-flex justify-content-between align-items-center"> */}
-    //     {/* <NavLink to="/">
-    //       <img src={logo} alt="Gren Logo" width={100} height={90} className={css.logo} />
-    //     </NavLink> */}
-
-    //     {/* <Navbar.Toggle aria-controls="main-navbar-nav" className="me-2">
-    //       <img src={burger} alt="Menu" className={css.burgerIcon}/>
-    //     </Navbar.Toggle> */}
-
-    //     <Navbar.Collapse id="main-navbar-nav" className={css.burger}>
-    //       <Nav className={clsx("ms-auto", css.navCollapseMobile)}>
-    //       </Nav>
-    //     </Navbar.Collapse>
-    //   {/* </Container> */}
-    // </Navbar>
     <nav className={css.container}>
-      <NavLink to="/">
-        <img
-          src={logo}
-          alt="logo"
-          className={css.logo} />
-      </NavLink>      
-      <div className={css.links}>
-        <NavLink to="/" className={makeLinkClass}>HOME</NavLink>
+      <NavLink to="/" onClick={closeMenu}>
+        <img src={logo} alt="logo" className={css.logo} />
+      </NavLink>
 
-        <HashLink smooth to="/#about" className={css.link}>ABOUT US</HashLink>
-        <HashLink smooth to="/#car" className={css.link}>OUR CAR</HashLink>
-        <HashLink smooth to="/#services" className={css.link}>SERVICES</HashLink>
+      <div className={css.burger} onClick={toggleMenu}>
+        {isOpen ? <FiX size={28} className={css.cross} /> : <FiMenu size={28} />}
+      </div>
 
-        <NavLink to="/book" className={makeLinkClass}>BOOK</NavLink>    
-      </div>     
+      <div className={clsx(css.links, isOpen && css.showMenu)}>
+        <NavLink to="/" className={makeLinkClass} onClick={closeMenu}>
+          HOME
+        </NavLink>
+        <HashLink smooth to="/#about" className={css.link} onClick={closeMenu}>
+          ABOUT US
+        </HashLink>
+        <HashLink smooth to="/#car" className={css.link} onClick={closeMenu}>
+          OUR CAR
+        </HashLink>
+        <HashLink smooth to="/#services" className={css.link} onClick={closeMenu}>
+          SERVICES
+        </HashLink>
+        <NavLink to="/book" className={makeLinkClass} onClick={closeMenu}>
+          BOOK
+        </NavLink>
+      </div>
     </nav>
-    
   );
-}
+};
 
-export default Navigation
+export default Navigation;
