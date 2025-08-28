@@ -1,6 +1,6 @@
 .container{
   background-color: rgba(0, 0, 0, 0.81);
-  height: 200px;
+  height: 250px;
   padding: 0 40px;
   display: flex;
   flex-direction: column;
@@ -11,8 +11,8 @@
 .logo {
   display: block;
   justify-content: flex-start;
-  width: 100px;
-  height: 100px;
+  width: 150px;
+  height: 140px;
 }
 
 .txt{
