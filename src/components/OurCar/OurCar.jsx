@@ -89,12 +89,28 @@ const OurCar = ({id}) => {
       <h1 className={css.title}><PiSteeringWheel size={35} /> Our Car</h1>
       <div className={css.descr}>
         <p className={css.txt}>Everything is prepared for your comfort and safety</p>
-        <div className={css.icons}>
-          <IoWaterOutline size={45} className={css.icon}/>
-            <IoWifiOutline size={45} className={css.icon}/>
-            <PiSnowflakeLight size={45} className={css.icon}/>
-            <PiBabyLight size={45} className={css.icon}/>
-            <PiBatteryChargingVerticalLight size={45} className={css.icon}/>
+          
+          <div className={css.icons}>
+            <div className={css.iconBox}>
+              <IoWaterOutline size={45} className={css.icon}/>
+              <span className={css.label}>Water</span>
+            </div>
+            <div className={css.iconBox}>
+              <IoWifiOutline size={45} className={css.icon}/>
+              <span className={css.label}>Wi-Fi</span>
+            </div>
+            <div className={css.iconBox}>
+              <PiSnowflakeLight size={45} className={css.icon}/>
+              <span className={css.label}>AC</span>
+            </div>
+            <div className={css.iconBox}>
+              <PiBabyLight size={45} className={css.icon}/>
+              <span className={css.label}>Baby Seat</span>
+            </div>
+            <div className={css.iconBox}>
+              <PiBatteryChargingVerticalLight size={45} className={css.icon}/>
+              <span className={css.label}>Charger</span>
+            </div>
           </div>     
       </div>
       

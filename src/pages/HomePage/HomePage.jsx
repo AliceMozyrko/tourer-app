@@ -7,13 +7,16 @@ import css from "./HomePage.module.css"
 
 const HomePage = () => {
   return (
-    <div className={css.container}>
+    <div>
       <Hero/>
-      <AboutUs id="about"/>
-      <OurCar id="car"/>
-      <Services id="services" />
+      <div className={css.container}>
+        <AboutUs id="about"/>
+        <OurCar id="car"/>
+        <Services id="services" />
+    </div>
       <Footer/>
     </div>
+    
   )
 }
 

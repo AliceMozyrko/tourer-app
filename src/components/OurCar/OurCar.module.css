@@ -1,7 +1,3 @@
-.container {
-  padding: 0 70px;
-}
-
 .title {
   display: flex;
   position: relative;
@@ -35,16 +31,31 @@
   margin-bottom: 40px;
 }
 
-.icons{
+.icons {
   display: flex;
   gap: 50px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.iconBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 70px;
+}
+
+.label {
+  margin-top: 8px;
+  font-size: 14px;
+  color: #333;
 }
 
 .icon{
   border: 1.5px solid #338551;
   border-radius: 50%;
   padding: 7px;
-  
 }
 
 .txt{
