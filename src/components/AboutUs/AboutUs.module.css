@@ -77,17 +77,6 @@
 }
 
 @media screen and (min-width: 768px) {
-  
-}
-
-@media screen and (min-width: 1158px) {
-  .container{
-  gap: 100px;
-  display: flex;
-  flex-direction: row;
-  align-items: start;
-  justify-content: space-between;
-}
 .title {
   font-size: 40px;
 }
@@ -96,6 +85,16 @@
 }
 .slider {
   width: 80%;   
+}
+}
+
+@media screen and (min-width: 1158px) {
+.container{
+  gap: 100px;
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+  justify-content: space-between;
 }
 .image {
   width: 80%;

@@ -29,9 +29,10 @@
 
 .cards{
   display: flex;
-  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   gap: 30px;
-  justify-content: space-around;
   margin-bottom: 90px;
 }
 
@@ -42,7 +43,7 @@
   border-radius: 12px;
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
   overflow: hidden;
-  width: 400px;
+  width: 300px;
   transition: all 0.3s ease;
 }
 
@@ -173,7 +174,9 @@
 }
 
 @media screen and (min-width: 768px) {
-  
+.card {
+  width: 500px;
+}
 }
 
 @media screen and (min-width: 1158px) {
@@ -181,6 +184,11 @@
   font-size: 40px;
 }
 .cards{
-  gap: 0;
+  flex-direction: row;
+  gap: 50px;
 }
+.card {
+  width: 400px;
+}
+
 }

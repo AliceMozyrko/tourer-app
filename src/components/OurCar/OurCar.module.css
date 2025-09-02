@@ -178,17 +178,8 @@
 
 
 @media screen and (min-width: 768px) {
-  
-}
-
-@media screen and (min-width: 1158px) {
-  .title {
+.title {
   font-size: 40px;
-}
-
-.descr{
-  flex-direction: row;
-  gap: 0;
 }
 .icons {
   gap: 50px;
@@ -197,14 +188,26 @@
   font-size: 20px;
 }
 .gallery{
-  max-width: 1244px;
+  max-width: 600px;
 }
 .photoCard {
   margin-bottom: 0;
   height: 450px;  
 }
 .modalSliderWrapper {
-  max-width: 1000px;
+  max-width: 500px;
+}
 }
 
+@media screen and (min-width: 1158px) {
+.descr{
+  flex-direction: row;
+  gap: 0;
+}
+.gallery{
+  max-width: 1244px;
+}
+.modalSliderWrapper {
+  max-width: 1000px;
+}
 }

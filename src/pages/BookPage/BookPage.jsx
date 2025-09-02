@@ -1,6 +1,6 @@
-import Navigation from "../../components/Navigation/Navigation"
+import Navigation from "../../Components/Navigation/Navigation"
 import Footer from "../../components/Footer/Footer"
-// import BookForm from "../../components/BookForm/BookForm"
+import BookForm from "../../components/BookForm/BookForm"
 import css from "./BookPage.module.css"
 
 const BookPage = () => {
@@ -9,7 +9,7 @@ const BookPage = () => {
       <Navigation />
       <div className={css.container}>
         <h1 className={css.title}>Order Form</h1>
-        {/* <BookForm/>        */}
+        <BookForm/>       
       </div>
       <Footer/>
     </div>

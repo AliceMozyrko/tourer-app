@@ -1,73 +1,117 @@
-.form {
+.container {
   display: flex;
   flex-direction: column;
-  width: 800px;
-  padding: 25px;
-  border-radius: 12px;
-  box-shadow: 0 6px 18px #0000001a;
-  margin-bottom: 90px;
+  gap: 20px;
+  width: 700px;
+  margin: 0 auto;
+  padding: 30px;
+  background-color: #fff;
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  color: rgba(0, 0, 0, 0.81);
 }
 
-.group {
-  margin-bottom: 18px;
+.label {
   display: flex;
   flex-direction: column;
+  font-weight: 500;
+  gap: 8px;
+  position: relative;
 }
 
-label {
-  margin-bottom: 6px;
-  font-weight: 600;
-  color: #333;
-}
-
-.input,
-.textarea,
-select {
-  padding: 10px 12px;
-  border: 1px solid #ccc;
+.field {
+  padding: 10px 14px;
   border-radius: 8px;
-  font-size: 15px;
-  transition: border-color 0.3s;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  transition: all 0.3s ease;
 }
 
-.input:focus,
-.textarea:focus,
-select:focus {
-  border-color: #338551;
+.field:focus {
   outline: none;
+  border-color: #ff6e25;
+  box-shadow: 0 0 6px rgba(255, 110, 37, 0.5);
 }
 
-.textarea {
+.errorField {
+  border-color: #ff6e25;
+  background-color: #fff0f0;
+}
+
+.error {
+  color: #ff6e25;
+  font-size: 13px;
+  margin-top: 4px;
+}
+
+select.field {
+  appearance: none;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+textarea.field {
   min-height: 80px;
   resize: vertical;
 }
 
-.checkbox {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 8px;
+button {
+  padding: 10px 18px;
+  border-radius: 8px;
+  border: none;
+  background-color: #ff6e25;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+  align-self: flex-start;
 }
 
-.error {
-  font-size: 13px;
-  color: #ff6e25;
-  margin-top: 4px;
+button:hover {
+  background-color: #338551;
 }
 
 .submitBtn {
-  width: 50%;
-  padding: 12px;
-  font-size: 16px;
-  font-weight: 600;
-  transition: 0.3s; 
-  color: #f7fffb;
   background-color: #338551;
-  border: none;
-  border-radius: 20px;
-  margin: 0 auto;
+  margin-top: 20px;
+  width: 150px;
+  text-align: center;
 }
 
 .submitBtn:hover {
-  background-color: #245e39;
+  background-color: #ff6e25;
+  color: #fff;
+}
+
+label svg {
+  margin-right: 8px;
+  color: #338551;
+  vertical-align: middle;
+}
+
+label > div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+label button {
+  background-color: #338551;
+  padding: 6px 12px;
+  font-size: 14px;
+}
+
+label button:hover {
+  background-color: #ff6e25;
+}
+
+a {
+  color: #338551;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+a:hover {
+  text-decoration: underline;
 }
