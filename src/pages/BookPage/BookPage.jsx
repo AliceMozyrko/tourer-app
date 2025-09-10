@@ -1,4 +1,4 @@
-import Navigation from "../../Components/Navigation/Navigation"
+import Navigation from "../../components/Navigation/Navigation"
 import Footer from "../../components/Footer/Footer"
 import BookForm from "../../components/BookForm/BookForm"
 import css from "./BookPage.module.css"
