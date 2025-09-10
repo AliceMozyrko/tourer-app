@@ -17,7 +17,7 @@ import { SiSignal, SiWechat } from "react-icons/si";
 import css from "./BookForm.module.css";
 
 
-const PHONE = "+380638717366";
+const PHONE = "+380634943230";
 
 const BookForm = () => {
 
