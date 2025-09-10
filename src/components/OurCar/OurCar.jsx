@@ -13,7 +13,7 @@ import css from "./OurCar.module.css";
 const photos = [
   { src: "/img/photos/IMG_20240702_164148-min.jpg", alt: "front-view", description: "Front view of the car" },
   { src: "/img/photos/IMG_20210604_160608-min.jpg", alt: "4-4", description: "4x4" },
-  { src: "/img/photos/IMG_20220223_100816_1-min.jpg", alt: "seats", description: "Baby seats" },
+  { src: "/img/photos/IMG_20220223_100816_1-min.jpg", alt: "baby-seats", description: "Baby seats" },
   { src: "/img/photos/IMG_20240729_163145-min.jpg", alt: "norm-seats-placement", description: "Usual seats placement" },
   { src: "/img/photos/IMG_20210701_183906_1-min.jpg", alt: "face-to-face", description: "Face-to-face seating" },
   { src: "/img/photos/IMG_20210701_114923-min.jpg", alt: "trunk", description: "Trunk space" },

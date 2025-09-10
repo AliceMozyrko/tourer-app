@@ -1,7 +1,7 @@
 .container {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 40px;
   width: 700px;
   margin: 0 auto;
   padding: 30px;
@@ -9,9 +9,51 @@
   border-radius: 16px;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
   color: rgba(0, 0, 0, 0.81);
+  margin-bottom: 40px;
 }
 
-.label {
+.dateTime{
+  display: flex;
+  gap: 30px;
+}
+.returnLabel {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  color: rgba(0, 0, 0, 0.81);
+}
+
+.returnCheckbox {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #338551; 
+  border-radius: 4px;
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+}
+
+.returnCheckbox:checked {
+  background-color: #ff6e25; 
+  border-color: #ff6e25;
+}
+
+.returnCheckbox:checked::after {
+  content: "✔";
+  color: white;
+  font-size: 14px;
+  position: absolute;
+  left: 2px;
+}
+
+.returnText {
+  user-select: none;
+}
+
+.label { 
   display: flex;
   flex-direction: column;
   font-weight: 500;
@@ -20,6 +62,7 @@
 }
 
 .field {
+  width: 100%;
   padding: 10px 14px;
   border-radius: 8px;
   border: 1px solid #ccc;
@@ -29,8 +72,8 @@
 
 .field:focus {
   outline: none;
-  border-color: #ff6e25;
-  box-shadow: 0 0 6px rgba(255, 110, 37, 0.5);
+  border-color: #338551;;
+  box-shadow: 0 0 6px #33855145;
 }
 
 .errorField {
@@ -52,7 +95,6 @@ select.field {
 
 textarea.field {
   min-height: 80px;
-  resize: vertical;
 }
 
 button {
@@ -77,6 +119,7 @@ button:hover {
   margin-top: 20px;
   width: 150px;
   text-align: center;
+  align-self: center;
 }
 
 .submitBtn:hover {
@@ -85,7 +128,6 @@ button:hover {
 }
 
 label svg {
-  margin-right: 8px;
   color: #338551;
   vertical-align: middle;
 }

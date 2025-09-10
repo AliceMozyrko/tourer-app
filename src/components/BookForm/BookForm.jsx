@@ -2,6 +2,7 @@ import { Form, Field, Formik, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import toast from "react-hot-toast";
 import { HashLink } from "react-router-hash-link";
+import { useState } from "react";
 
 import { TbCircleLetterAFilled, TbCircleLetterBFilled } from "react-icons/tb";
 import { IoCalendarClearOutline } from "react-icons/io5";
@@ -10,10 +11,20 @@ import { RxPerson } from "react-icons/rx";
 import { BsLuggage } from "react-icons/bs";
 import { MdOutlinePets } from "react-icons/md";
 import { PiSeatLight } from "react-icons/pi";
+import { FaWhatsapp, FaViber, FaTelegram } from "react-icons/fa";
+import { SiSignal, SiWechat } from "react-icons/si";
 
 import css from "./BookForm.module.css";
 
+
+const PHONE = "+380638717366";
+
 const BookForm = () => {
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [formData, setFormData] = useState(null);
+
+
   const initialValues = {
     departure: "",
     destination: "",
@@ -59,7 +70,7 @@ const BookForm = () => {
     kids: Yup.number()
       .typeError("Enter a number")
       .min(0, "Cannot be negative")
-      .required("Number of adults is required"),
+      .required("Number is required"),
     babySeats: Yup.string().nullable().required("Choose a baby seat"),
     suitcases: Yup.number()
       .typeError("Enter a number")
@@ -81,10 +92,55 @@ const BookForm = () => {
     seats: Yup.string().oneOf(["usual", "face"]).required(),
   });
 
-  const handleSubmit = (values, options) => {
-    console.log(values);
-    toast.success("Form submitted!");
-    options.resetForm();
+  const handleSubmit = (values) => {
+  setFormData(values);
+  setIsModalOpen(true);
+  toast.success("Almost done! Choose a messenger 👇");
+  // resetForm();
+};
+
+  const formatMessage = (data) => {
+    return `🚖 New Booking Request:
+    From: ${data.departure}
+    To: ${data.destination}
+    Departure: ${data.departureDate} ${data.departureTime}
+    ${data.returnRide ? `Return: ${data.returnDate} ${data.returnTime}` : ""}
+    Adults: ${data.adults}, Kids: ${data.kids}
+    Baby seat: ${data.babySeats}
+    Suitcases: ${data.suitcases}
+    Animals: ${data.animals}${data.animals === "yes" ? ` (${data.animalType}, ${data.animalWeight}kg)` : ""}
+    Seats: ${data.seats}
+    Pickup sign: ${data.pickupSign || "—"}
+    Comments: ${data.info || "—"}`;
+  };
+
+  const handleMessengerClick = (type) => {
+    if (!formData) return;
+    const text = encodeURIComponent(formatMessage(formData));
+
+    let url = "";
+    switch (type) {
+      case "whatsapp":
+        url = `https://wa.me/${PHONE}?text=${text}`;
+        break;
+      case "viber":
+        url = `viber://chat?number=${PHONE}&text=${text}`;
+        break;
+      case "telegram":
+        // url = `https://t.me/share/url?url=&text=${text}`;
+        url = `https://t.me/MozyrkoYevhen`
+        break;
+      case "signal":
+        url = `sgnl://send?phone=${PHONE}&text=${text}`;
+        break;
+      case "wechat":
+        toast("WeChat sharing is limited. Copy text manually.");
+        return;
+      default:
+        return;
+    }
+    window.open(url, "_blank");
+    setIsModalOpen(false);
   };
 
   return (
@@ -98,43 +154,48 @@ const BookForm = () => {
           <Form className={css.container} autoComplete="off">
             {/* Departure */}
             <label className={css.label}>
-              <TbCircleLetterAFilled />
-              <Field name="departure">
-                {({ field, meta }) => (
-                  <input
-                    {...field}
-                    type="text"
-                    className={`${css.field} ${
-                      meta.touched && meta.error ? css.errorField : ""
-                    }`}
-                    placeholder="From: address, airport, hotel"
-                  />
-                )}
-              </Field>
-              <ErrorMessage name="departure" className={css.error} component="div" />
+              <div>
+                <TbCircleLetterAFilled size={30}/>
+                <Field name="departure">
+                  {({ field, meta }) => (
+                    <input
+                      {...field}
+                      type="text"
+                      className={`${css.field} ${
+                        meta.touched && meta.error ? css.errorField : ""
+                      }`}
+                      placeholder="From: address, airport, hotel"
+                    />
+                  )}
+                </Field>
+                <ErrorMessage name="departure" className={css.error} component="div" />
+              </div>            
             </label>
 
             {/* Destination */}
             <label className={css.label}>
-              <TbCircleLetterBFilled />
-              <Field name="destination">
-                {({ field, meta }) => (
-                  <input
-                    {...field}
-                    type="text"
-                    className={`${css.field} ${
-                      meta.touched && meta.error ? css.errorField : ""
-                    }`}
-                    placeholder="To: address, airport, hotel"
-                  />
-                )}
-              </Field>
-              <ErrorMessage name="destination" className={css.error} component="div" />
+              <div>
+                <TbCircleLetterBFilled size={30}/>
+                <Field name="destination">
+                  {({ field, meta }) => (
+                    <input
+                      {...field}
+                      type="text"
+                      className={`${css.field} ${
+                        meta.touched && meta.error ? css.errorField : ""
+                      }`}
+                      placeholder="To: address, airport, hotel"
+                    />
+                  )}
+                </Field>
+                <ErrorMessage name="destination" className={css.error} component="div" />
+              </div>             
             </label>
-
+          
+            <div className={css.dateTime}>
             {/* Departure Date & Time */}
             <label className={css.label}>
-              <IoCalendarClearOutline /> Ride date
+              <div><IoCalendarClearOutline size={20}/> Ride date</div>
               <Field name="departureDate">
                 {({ field, meta }) => (
                   <input
@@ -150,7 +211,8 @@ const BookForm = () => {
             </label>
 
             <label className={css.label}>
-              <AiOutlineClockCircle /> Pick-up time
+              <div><AiOutlineClockCircle size={20} /> Pick-up time</div>
+              <div>
               <Field name="departureTime">
                 {({ field, meta }) => (
                   <input
@@ -174,12 +236,15 @@ const BookForm = () => {
               >
                 Now
               </button>
-              <ErrorMessage name="departureTime" className={css.error} component="div" />
-            </label>
-
+                <ErrorMessage name="departureTime" className={css.error} component="div" />
+              </div>
+              </label>
+            </div>
+          
+            <div className={css.dateTime}>
             {/* Desirable arrival date & time */}
             <label className={css.label}>
-              <IoCalendarClearOutline /> Desirable arrival date
+              <div><IoCalendarClearOutline size={20}/> Desirable arrival date</div>
               <Field name="desirableDate">
                 {({ field, meta }) => (
                   <input
@@ -195,7 +260,7 @@ const BookForm = () => {
             </label>
 
             <label className={css.label}>
-              <AiOutlineClockCircle /> Desirable arrival time
+              <div><AiOutlineClockCircle size={20}/> Desirable arrival time</div>
               <Field name="desirableTime">
                 {({ field, meta }) => (
                   <input
@@ -208,23 +273,25 @@ const BookForm = () => {
                 )}
               </Field>
               <ErrorMessage name="desirableTime" className={css.error} component="div" />
-            </label>
+              </label>
+            </div>
 
             {/* Return ride */}
-            <label className={css.label}>
-              Add return ride
-              <button
-                type="button"
-                onClick={() => setFieldValue("returnRide", !values.returnRide)}
-              >
-                {values.returnRide ? "Remove return" : "Add return"}
-              </button>
+            <label className={css.returnLabel}>
+              <input
+                type="checkbox"
+                className={css.returnCheckbox}
+                checked={values.returnRide}
+                onChange={() => setFieldValue("returnRide", !values.returnRide)}
+              />
+              <span className={css.returnText}>Add return ride</span>
             </label>
-
+          
+            <div className={css.dateTime}>
             {values.returnRide && (
               <>
                 <label className={css.label}>
-                  <IoCalendarClearOutline /> Return date
+                  <div><IoCalendarClearOutline size={20}/> Return date</div>
                   <Field name="returnDate">
                     {({ field, meta }) => (
                       <input
@@ -238,9 +305,9 @@ const BookForm = () => {
                   </Field>
                   <ErrorMessage name="returnDate" className={css.error} component="div" />
                 </label>
-
+                
                 <label className={css.label}>
-                  <AiOutlineClockCircle /> Return time
+                  <div><AiOutlineClockCircle size={20}/> Return time</div>
                   <Field name="returnTime">
                     {({ field, meta }) => (
                       <input
@@ -256,10 +323,11 @@ const BookForm = () => {
                 </label>
               </>
             )}
+            </div>
 
             {/* Passengers */}
             <label className={css.label}>
-              <RxPerson /> Number of passengers 150+ cm
+              <div><RxPerson size={20}/> Number of passengers 150+ cm</div>
               <Field name="adults">
                 {({ field, meta }) => (
                   <input
@@ -275,7 +343,7 @@ const BookForm = () => {
             </label>
 
             <label className={css.label}>
-              <RxPerson /> Number of passengers up to 150 cm
+              <div><RxPerson size={20}/> Number of passengers up to 150 cm</div>
               <Field name="kids">
                 {({ field, meta }) => (
                   <input
@@ -292,6 +360,11 @@ const BookForm = () => {
 
             {/* Baby seats */}
             <label className={css.label}>
+              <div>
+                Choose a baby seat
+                <HashLink smooth to="/#car">(view photo in the gallery)</HashLink>
+              </div>
+              
               <Field name="babySeats">
                 {({ field, meta }) => (
                   <select
@@ -300,10 +373,10 @@ const BookForm = () => {
                       meta.touched && meta.error ? css.errorField : ""
                     }`}
                   >
-                    <option value="">--Select a baby seat--</option>
                     <option value="infant">Infant carrier (up to 10 kg)</option>
                     <option value="child">Convertible seat (10–21 kg)</option>
                     <option value="booster">Booster seat (22–36 kg)</option>
+                    <option value="no">No need</option>
                   </select>
                 )}
               </Field>
@@ -312,7 +385,7 @@ const BookForm = () => {
 
             {/* Luggage */}
             <label className={css.label}>
-              <BsLuggage /> Number of suitcases (excluding hand luggage)
+              <div><BsLuggage size={20}/> Number of suitcases (excluding hand luggage)</div>
               <Field name="suitcases">
                 {({ field, meta }) => (
                   <input
@@ -327,26 +400,9 @@ const BookForm = () => {
               <ErrorMessage name="suitcases" className={css.error} component="div" />
             </label>
 
-            {/* Comments */}
-            <label className={css.label}>
-              Comments
-              <Field name="info">
-                {({ field, meta }) => (
-                  <textarea
-                    {...field}
-                    className={`${css.field} ${
-                      meta.touched && meta.error ? css.errorField : ""
-                    }`}
-                    placeholder="Any wishes, special needs or tasks"
-                  />
-                )}
-              </Field>
-              <ErrorMessage name="info" className={css.error} component="div" />
-            </label>
-
             {/* Animals */}
             <label className={css.label}>
-              <MdOutlinePets /> Animals
+              <div><MdOutlinePets size={20}/> Animals</div>
               <Field name="animals">
                 {({ field, meta }) => (
                   <select
@@ -363,10 +419,11 @@ const BookForm = () => {
               <ErrorMessage name="animals" className={css.error} component="div" />
             </label>
 
+            <div className={css.dateTime}>
             {values.animals === "yes" && (
               <>
                 <label className={css.label}>
-                  Breed
+                  Type (dog,cat...)
                   <Field name="animalType">
                     {({ field, meta }) => (
                       <input
@@ -397,7 +454,8 @@ const BookForm = () => {
                   <ErrorMessage name="animalWeight" className={css.error} component="div" />
                 </label>
               </>
-            )}
+              )}
+            </div>
 
             {/* Pickup sign */}
             <label className={css.label}>
@@ -419,10 +477,10 @@ const BookForm = () => {
 
             {/* Seats */}
             <label className={css.label}>
-              <PiSeatLight /> Seats placement
-              <HashLink smooth to="/#car">
-                (click here to know more)
-              </HashLink>
+              <div>
+                <PiSeatLight size={25} /> Seats placement
+                <HashLink smooth to="/#car">(view photo in the gallery)</HashLink>
+                </div>
               <Field name="seats">
                 {({ field, meta }) => (
                   <select
@@ -439,13 +497,59 @@ const BookForm = () => {
               <ErrorMessage name="seats" className={css.error} component="div" />
             </label>
 
+            {/* Comments */}
+            <label className={css.label}>
+              Comments
+              <Field name="info">
+                {({ field, meta }) => (
+                  <textarea
+                    {...field}
+                    className={`${css.field} ${
+                      meta.touched && meta.error ? css.errorField : ""
+                    }`}
+                    placeholder="Any wishes, special needs or tasks"
+                  />
+                )}
+              </Field>
+              <ErrorMessage name="info" className={css.error} component="div" />
+            </label>
+
             {/* Submit */}
             <button type="submit" className={css.submitBtn}>
-              Book
+              BOOK
             </button>
           </Form>
         )}
       </Formik>
+
+      {/* Modal */}
+      {isModalOpen && (
+        <div className={css.modalOverlay}>
+          <div className={css.modal}>
+            <h3>Send booking via messenger:</h3>
+            <div className={css.messengerRow}>
+              <a onClick={() => handleMessengerClick("whatsapp")}>
+                <FaWhatsapp size={40} color="#25D366" />
+              </a>
+              <a onClick={() => handleMessengerClick("viber")}>
+                <FaViber size={40} color="#665CAC" />
+              </a>
+              <a onClick={() => handleMessengerClick("telegram")}>
+                <FaTelegram size={40} color="#0088cc" />
+              </a>
+              <a onClick={() => handleMessengerClick("signal")}>
+                <SiSignal size={40} color="#3A76F0" />
+              </a>
+              <a onClick={() => handleMessengerClick("wechat")}>
+                <SiWechat size={40} color="#7BB32E" />
+              </a>
+            </div>
+            <button className={css.closeBtn} onClick={() => setIsModalOpen(false)}>
+              Cancel
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
