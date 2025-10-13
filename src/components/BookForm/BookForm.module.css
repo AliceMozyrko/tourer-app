@@ -1,7 +1,7 @@
 .container {
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: 20px;
   width: 700px;
   margin: 0 auto;
   padding: 30px;
@@ -97,7 +97,7 @@ textarea.field {
   min-height: 80px;
 }
 
-button {
+.bookBtn {
   padding: 10px 18px;
   border-radius: 8px;
   border: none;
@@ -110,7 +110,7 @@ button {
   align-self: flex-start;
 }
 
-button:hover {
+.bookBtn:hover {
   background-color: #338551;
 }
 

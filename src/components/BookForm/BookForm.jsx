@@ -10,7 +10,7 @@ import { AiOutlineClockCircle } from "react-icons/ai";
 import { RxPerson } from "react-icons/rx";
 import { BsLuggage } from "react-icons/bs";
 import { MdOutlinePets } from "react-icons/md";
-import { PiSeatLight } from "react-icons/pi";
+// import { PiSeatLight } from "react-icons/pi";
 import { FaWhatsapp, FaViber, FaTelegram } from "react-icons/fa";
 import { SiSignal, SiWechat } from "react-icons/si";
 
@@ -43,8 +43,6 @@ const BookForm = () => {
     animals: "no",
     animalType: "",
     animalWeight: "",
-    pickupSign: "",
-    seats: "usual",
   };
 
   const bookSchema = Yup.object().shape({
@@ -88,8 +86,6 @@ const BookForm = () => {
         .typeError("Enter a number")
         .required("Weight is required"),
     }),
-    pickupSign: Yup.string().max(100, "Too long"),
-    seats: Yup.string().oneOf(["usual", "face"]).required(),
   });
 
   const handleSubmit = (values) => {
@@ -109,7 +105,6 @@ const BookForm = () => {
     Baby seat: ${data.babySeats}
     Suitcases: ${data.suitcases}
     Animals: ${data.animals}${data.animals === "yes" ? ` (${data.animalType}, ${data.animalWeight}kg)` : ""}
-    Seats: ${data.seats}
     Pickup sign: ${data.pickupSign || "—"}
     Comments: ${data.info || "—"}`;
   };
@@ -124,11 +119,10 @@ const BookForm = () => {
         url = `https://wa.me/${PHONE}?text=${text}`;
         break;
       case "viber":
-        url = `viber://chat?number=${PHONE}&text=${text}`;
+        url = `viber://chat?number=${PHONE}?text=${text}`;
         break;
       case "telegram":
-        // url = `https://t.me/share/url?url=&text=${text}`;
-        url = `https://t.me/MozyrkoYevhen`
+        url = `https://t.me/MozyrkoYevhen?text=${text}`
         break;
       case "signal":
         url = `sgnl://send?phone=${PHONE}&text=${text}`;
@@ -224,7 +218,8 @@ const BookForm = () => {
                   />
                 )}
               </Field>
-              <button
+                  <button
+                    className={css.bookBtn}
                 type="button"
                 onClick={() => {
                   const now = new Date();
@@ -373,6 +368,7 @@ const BookForm = () => {
                       meta.touched && meta.error ? css.errorField : ""
                     }`}
                   >
+                    <option value="default">Select</option>
                     <option value="infant">Infant carrier (up to 10 kg)</option>
                     <option value="child">Convertible seat (10–21 kg)</option>
                     <option value="booster">Booster seat (22–36 kg)</option>
@@ -457,8 +453,8 @@ const BookForm = () => {
               )}
             </div>
 
-            {/* Pickup sign */}
-            <label className={css.label}>
+            
+            {/* <label className={css.label}>
               Pickup sign
               <Field name="pickupSign">
                 {({ field, meta }) => (
@@ -473,9 +469,9 @@ const BookForm = () => {
                 )}
               </Field>
               <ErrorMessage name="pickupSign" className={css.error} component="div" />
-            </label>
+            </label> */}
 
-            {/* Seats */}
+{/*             
             <label className={css.label}>
               <div>
                 <PiSeatLight size={25} /> Seats placement
@@ -495,7 +491,7 @@ const BookForm = () => {
                 )}
               </Field>
               <ErrorMessage name="seats" className={css.error} component="div" />
-            </label>
+            </label> */}
 
             {/* Comments */}
             <label className={css.label}>
@@ -515,7 +511,7 @@ const BookForm = () => {
             </label>
 
             {/* Submit */}
-            <button type="submit" className={css.submitBtn}>
+            <button type="submit" className={css.bookBtn}>
               BOOK
             </button>
           </Form>
