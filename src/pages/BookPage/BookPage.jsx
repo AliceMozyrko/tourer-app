@@ -6,12 +6,16 @@ import css from "./BookPage.module.css"
 const BookPage = () => {
   return (
     <div>
-      <Navigation />
+        <div className={css.hero}>
+          <Navigation />
+        </div>
+
       <div className={css.container}>
         <h1 className={css.title}>Order Form</h1>
-        <BookForm/>       
+        <BookForm />
       </div>
-      <Footer/>
+
+      <Footer />
     </div>
   )
 }

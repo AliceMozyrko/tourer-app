@@ -14,7 +14,7 @@ const AboutUs = ({id}) => {
         <ul className={css.descr}>
           <li>A transfer company from Kyiv, licensed for international and domestic passenger transportation by car, License No. 492 dated July 3, 2024.</li>
           <li>Our experience will help you plan your departure time correctly to arrive on time.</li>
-          <li>Payment by card or cash</li>
+          <li>Payment by card or cash.</li>
         </ul>
       </div>
         <Swiper 

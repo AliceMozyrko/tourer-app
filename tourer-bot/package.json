@@ -1,0 +1,13 @@
+{
+  "name": "tourer-app-bot",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "bot.js",
+  "scripts": {
+    "start": "node bot.js"
+  },
+  "keywords": [],
+  "author": "Alice Mozyrko <mozyrkoalisa@gmail.com>",
+  "license": "ISC",
+  "description": ""
+}

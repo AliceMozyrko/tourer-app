@@ -1,5 +1,5 @@
 .hero{
-  background: url(../../../public/img/hero-tourer.png) no-repeat 20%center;
+  background: url(../../../public/img/hero-tourer.png) no-repeat center;
   background-size: cover;
   height: 500px;
   width: 100%;
@@ -38,7 +38,7 @@
   }
   .title{
   font-size: 45px;
-  margin-top: 50px;
+  margin-top: 20px;
   margin-left: 70px;
   }
   .subtitle{

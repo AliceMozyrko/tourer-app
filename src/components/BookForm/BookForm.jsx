@@ -3,21 +3,18 @@ import * as Yup from "yup";
 import toast from "react-hot-toast";
 import { HashLink } from "react-router-hash-link";
 import { useState } from "react";
-
 import { TbCircleLetterAFilled, TbCircleLetterBFilled } from "react-icons/tb";
 import { IoCalendarClearOutline } from "react-icons/io5";
 import { AiOutlineClockCircle } from "react-icons/ai";
 import { RxPerson } from "react-icons/rx";
 import { BsLuggage } from "react-icons/bs";
 import { MdOutlinePets } from "react-icons/md";
-// import { PiSeatLight } from "react-icons/pi";
 import { FaWhatsapp, FaViber, FaTelegram } from "react-icons/fa";
-import { SiSignal, SiWechat } from "react-icons/si";
 
 import css from "./BookForm.module.css";
 
 
-const PHONE = "+380634943230";
+const PHONE = "+380638717366";
 
 const BookForm = () => {
 
@@ -30,8 +27,8 @@ const BookForm = () => {
     destination: "",
     departureDate: "",
     departureTime: "",
-    desirableDate: "",
-    desirableTime: "",
+    // desirableDate: "",
+    // desirableTime: "",
     returnRide: false,
     returnDate: "",
     returnTime: "",
@@ -50,8 +47,8 @@ const BookForm = () => {
     destination: Yup.string().trim().required("Destination is required"),
     departureDate: Yup.date().required("Departure date is required"),
     departureTime: Yup.string().required("Departure time is required"),
-    desirableDate: Yup.date(),
-    desirableTime: Yup.string(),
+    // desirableDate: Yup.date(),
+    // desirableTime: Yup.string(),
     returnRide: Yup.boolean(),
     returnDate: Yup.date().when("returnRide", {
       is: true,
@@ -124,12 +121,12 @@ const BookForm = () => {
       case "telegram":
         url = `https://t.me/MozyrkoYevhen?text=${text}`
         break;
-      case "signal":
-        url = `sgnl://send?phone=${PHONE}&text=${text}`;
-        break;
-      case "wechat":
-        toast("WeChat sharing is limited. Copy text manually.");
-        return;
+      // case "signal":
+      //   url = `sgnl://send?phone=${PHONE}&text=${text}`;
+      //   break;
+      // case "wechat":
+      //   toast("WeChat sharing is limited. Copy text manually.");
+      //   return;
       default:
         return;
     }
@@ -220,8 +217,8 @@ const BookForm = () => {
               </Field>
                   <button
                     className={css.bookBtn}
-                type="button"
-                onClick={() => {
+                    type="button"
+                    onClick={() => {
                   const now = new Date();
                   setFieldValue(
                     "departureTime",
@@ -236,8 +233,7 @@ const BookForm = () => {
               </label>
             </div>
           
-            <div className={css.dateTime}>
-            {/* Desirable arrival date & time */}
+            {/* <div className={css.dateTime}>
             <label className={css.label}>
               <div><IoCalendarClearOutline size={20}/> Desirable arrival date</div>
               <Field name="desirableDate">
@@ -269,7 +265,7 @@ const BookForm = () => {
               </Field>
               <ErrorMessage name="desirableTime" className={css.error} component="div" />
               </label>
-            </div>
+            </div> */}
 
             {/* Return ride */}
             <label className={css.returnLabel}>
@@ -321,6 +317,7 @@ const BookForm = () => {
             </div>
 
             {/* Passengers */}
+          <div>
             <label className={css.label}>
               <div><RxPerson size={20}/> Number of passengers 150+ cm</div>
               <Field name="adults">
@@ -351,13 +348,14 @@ const BookForm = () => {
                 )}
               </Field>
               <ErrorMessage name="kids" className={css.error} component="div" />
-            </label>
-
+              </label>
+            </div>
+            
             {/* Baby seats */}
             <label className={css.label}>
               <div>
                 Choose a baby seat
-                <HashLink smooth to="/#car">(view photo in the gallery)</HashLink>
+                <HashLink smooth to="/#car"> (view photo in the gallery)</HashLink>
               </div>
               
               <Field name="babySeats">
@@ -508,7 +506,7 @@ const BookForm = () => {
                 )}
               </Field>
               <ErrorMessage name="info" className={css.error} component="div" />
-            </label>
+              </label>
 
             {/* Submit */}
             <button type="submit" className={css.bookBtn}>
@@ -529,15 +527,6 @@ const BookForm = () => {
               </a>
               <a onClick={() => handleMessengerClick("viber")}>
                 <FaViber size={40} color="#665CAC" />
-              </a>
-              <a onClick={() => handleMessengerClick("telegram")}>
-                <FaTelegram size={40} color="#0088cc" />
-              </a>
-              <a onClick={() => handleMessengerClick("signal")}>
-                <SiSignal size={40} color="#3A76F0" />
-              </a>
-              <a onClick={() => handleMessengerClick("wechat")}>
-                <SiWechat size={40} color="#7BB32E" />
               </a>
             </div>
             <button className={css.closeBtn} onClick={() => setIsModalOpen(false)}>

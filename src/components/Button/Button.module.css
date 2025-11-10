@@ -3,8 +3,10 @@
   background-color: #338551;
   border: none;
   border-radius: 20px;
+  transition: all 0.3s ease;
 }
 
 .button:hover{
   background-color: #245e39;
+  transform: translateY(-2px);
 }

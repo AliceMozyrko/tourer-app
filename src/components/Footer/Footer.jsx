@@ -25,9 +25,13 @@ const Footer = () => {
       <div className={css.socials}>
         <a onClick={handleClick}><FaWhatsapp size={30} color="#25D366" /></a>
         <a onClick={handleClick}><FaViber size={30} color="#665CAC" /></a>
-        <a onClick={handleClick}><FaTelegram size={30} color="#0088cc" /></a>
-        <a onClick={handleClick}><SiSignal size={30} color="#3A76F0" /></a>
-        <a onClick={handleClick}><SiWechat size={30} color="#7BB32E" /></a>
+        <a
+          href="https://t.me/TourerUaBot"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <FaTelegram size={30} color="#0088cc" />
+        </a>
       </div>
     </div>
   )

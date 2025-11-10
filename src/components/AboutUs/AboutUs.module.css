@@ -37,7 +37,6 @@
   border-radius: 4px;
 }
 
-
 .descr {
   display: flex;
   flex-direction: column;
@@ -98,5 +97,9 @@
 }
 .image {
   width: 80%;
+}
+
+.title{
+  margin-bottom: 130px;
 }
 }
