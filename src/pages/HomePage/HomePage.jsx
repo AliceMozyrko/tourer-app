@@ -5,18 +5,17 @@ import Services from "../../components/Services/Services"
 import Footer from "../../components/Footer/Footer"
 import css from "./HomePage.module.css"
 
-const HomePage = () => {
+const HomePage = ({ language, setLanguage, t }) => {
   return (
     <div>
-      <Hero/>
+      <Hero language={language} setLanguage={setLanguage} t={t}/>
       <div className={css.container}>
-        <AboutUs id="about"/>
-        <OurCar id="car"/>
-        <Services id="services" />
+        <AboutUs id="about" t={t}/>
+        <OurCar id="car" t={t}/>
+        <Services id="services" t={t}/>
       </div>
-      <Footer/>
+      <Footer t={t}/>
     </div>
-    
   )
 }
 

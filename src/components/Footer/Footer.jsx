@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 import css from "./Footer.module.css"
 
-const Footer = () => {
+const Footer = ({t}) => {
   const navigate = useNavigate()
 
   const handleClick = () => {
@@ -21,7 +21,7 @@ const Footer = () => {
           alt="logo"
           className={css.logo} />
       </NavLink>
-      <p className={css.txt}>© 2025 Tourer. All rights reserved.</p>
+      <p className={css.txt}>{t.footer.copyright}</p>
       <div className={css.socials}>
         <a onClick={handleClick}><FaWhatsapp size={30} color="#25D366" /></a>
         <a onClick={handleClick}><FaViber size={30} color="#665CAC" /></a>

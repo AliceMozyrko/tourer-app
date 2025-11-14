@@ -6,15 +6,16 @@ import "swiper/css/pagination";
 import { SlPeople } from "react-icons/sl";
 import css from "./AboutUs.module.css";
 
-const AboutUs = ({id}) => {
+
+const AboutUs = ({id, t}) => {
   return (
     <div className={css.container} id={id}>
       <div className={css.text}>
-        <h1 className={css.title}><SlPeople size={30}/> About Us</h1>
+        <h1 className={css.title}><SlPeople size={30} />{t.about.title}</h1>
         <ul className={css.descr}>
-          <li>A transfer company from Kyiv, licensed for international and domestic passenger transportation by car, License No. 492 dated July 3, 2024.</li>
-          <li>Our experience will help you plan your departure time correctly to arrive on time.</li>
-          <li>Payment by card or cash.</li>
+          <li>{t.about.license}</li>
+          <li>{t.about.experience}</li>
+          <li>{t.about.payment}</li>
         </ul>
       </div>
         <Swiper 

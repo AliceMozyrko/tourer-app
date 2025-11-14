@@ -1,8 +1,10 @@
 import React from "react";
-import { FaWhatsapp, FaViber } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+import { FaWhatsapp, FaViber, FaTelegram } from "react-icons/fa";
 import css from "./ModalBook.module.css";
 
 const ModalBook = ({ isOpen, onClose, onMessengerClick }) => {
+  const navigate = useNavigate();
   if (!isOpen) return null; 
 
   return (
@@ -13,7 +15,7 @@ const ModalBook = ({ isOpen, onClose, onMessengerClick }) => {
         <div className={css.messengerRow}>
           <button
             type="button"
-            onClick={() => onMessengerClick("whatsapp")}
+            onClick={() => navigate("/book")}
             className={css.messengerBtn}
           >
             <FaWhatsapp size={40} color="#25D366" />
@@ -31,7 +33,7 @@ const ModalBook = ({ isOpen, onClose, onMessengerClick }) => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <FaTelegram size={30} color="#0088cc" />
+            <FaTelegram size={40} color="#0088cc" />
           </a>
         </div>
 

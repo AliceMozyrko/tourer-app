@@ -3,19 +3,19 @@ import Footer from "../../components/Footer/Footer"
 import BookForm from "../../components/BookForm/BookForm"
 import css from "./BookPage.module.css"
 
-const BookPage = () => {
+const BookPage = ({language, setLanguage, t}) => {
   return (
     <div>
         <div className={css.hero}>
-          <Navigation />
+          <Navigation language={language} setLanguage={setLanguage} t={t}/>
         </div>
 
       <div className={css.container}>
-        <h1 className={css.title}>Order Form</h1>
-        <BookForm />
+        <h1 className={css.title}>{t.booking.title}</h1>
+        <BookForm t={t}/>
       </div>
 
-      <Footer />
+      <Footer t={t}/>
     </div>
   )
 }

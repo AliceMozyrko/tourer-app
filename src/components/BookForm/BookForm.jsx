@@ -16,7 +16,7 @@ import css from "./BookForm.module.css";
 
 const PHONE = "+380638717366";
 
-const BookForm = () => {
+const BookForm = ({t}) => {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [formData, setFormData] = useState(null);
@@ -27,8 +27,6 @@ const BookForm = () => {
     destination: "",
     departureDate: "",
     departureTime: "",
-    // desirableDate: "",
-    // desirableTime: "",
     returnRide: false,
     returnDate: "",
     returnTime: "",
@@ -43,53 +41,54 @@ const BookForm = () => {
   };
 
   const bookSchema = Yup.object().shape({
-    departure: Yup.string().trim().required("Departure is required"),
-    destination: Yup.string().trim().required("Destination is required"),
-    departureDate: Yup.date().required("Departure date is required"),
-    departureTime: Yup.string().required("Departure time is required"),
-    // desirableDate: Yup.date(),
-    // desirableTime: Yup.string(),
-    returnRide: Yup.boolean(),
-    returnDate: Yup.date().when("returnRide", {
-      is: true,
-      then: Yup.date(),
-    }),
-    returnTime: Yup.string().when("returnRide", {
-      is: true,
-      then: Yup.string(),
-    }),
-    adults: Yup.number()
+  departure: Yup.string().trim().required("Departure is required"),
+  destination: Yup.string().trim().required("Destination is required"),
+  departureDate: Yup.date().required("Departure date is required"),
+  departureTime: Yup.string().required("Departure time is required"),
+  returnRide: Yup.boolean(),
+  returnDate: Yup.date().when("returnRide", {
+    is: true,
+    then: (schema) => schema.required("Return date is required"), // ⬅️ ВИПРАВЛЕНО
+    otherwise: (schema) => schema.nullable(), // ⬅️ ДОДАНО
+  }),
+  returnTime: Yup.string().when("returnRide", {
+    is: true,
+    then: (schema) => schema.required("Return time is required"), // ⬅️ ВИПРАВЛЕНО
+    otherwise: (schema) => schema.nullable(), // ⬅️ ДОДАНО
+  }),
+  adults: Yup.number()
+    .typeError("Enter a number")
+    .min(1, "At least 1 adult")
+    .required("Number of adults is required"),
+  kids: Yup.number()
+    .typeError("Enter a number")
+    .min(0, "Cannot be negative")
+    .required("Number is required"),
+  babySeats: Yup.string().required("Choose a baby seat"), // ⬅️ ВИПРАВЛЕНО (прибрав nullable)
+  suitcases: Yup.number()
+    .typeError("Enter a number")
+    .min(0, "Cannot be negative")
+    .required("Number of suitcases is required"),
+  info: Yup.string().max(500, "Too long"),
+  animals: Yup.string().oneOf(["yes", "no"]).required(),
+  animalType: Yup.string().when("animals", {
+    is: "yes",
+    then: (schema) => schema.required("Breed is required"), // ⬅️ ВИПРАВЛЕНО
+    otherwise: (schema) => schema.nullable(), // ⬅️ ДОДАНО
+  }),
+  animalWeight: Yup.number().when("animals", {
+    is: "yes",
+    then: (schema) => schema
       .typeError("Enter a number")
-      .min(1, "At least 1 adult")
-      .required("Number of adults is required"),
-    kids: Yup.number()
-      .typeError("Enter a number")
-      .min(0, "Cannot be negative")
-      .required("Number is required"),
-    babySeats: Yup.string().nullable().required("Choose a baby seat"),
-    suitcases: Yup.number()
-      .typeError("Enter a number")
-      .min(0, "Cannot be negative")
-      .required("Number of suitcases is required"),
-    info: Yup.string().max(500, "Too long"),
-    animals: Yup.string().oneOf(["yes", "no"]).required(),
-    animalType: Yup.string().when("animals", {
-      is: "yes",
-      then: Yup.string().required("Breed is required"),
-    }),
-    animalWeight: Yup.number().when("animals", {
-      is: "yes",
-      then: Yup.number()
-        .typeError("Enter a number")
-        .required("Weight is required"),
-    }),
-  });
+      .required("Weight is required"), // ⬅️ ВИПРАВЛЕНО
+    otherwise: (schema) => schema.nullable(), // ⬅️ ДОДАНО
+  }),
+});
 
   const handleSubmit = (values) => {
   setFormData(values);
   setIsModalOpen(true);
   toast.success("Almost done! Choose a messenger 👇");
-  // resetForm();
 };
 
   const formatMessage = (data) => {
@@ -121,12 +120,6 @@ const BookForm = () => {
       case "telegram":
         url = `https://t.me/MozyrkoYevhen?text=${text}`
         break;
-      // case "signal":
-      //   url = `sgnl://send?phone=${PHONE}&text=${text}`;
-      //   break;
-      // case "wechat":
-      //   toast("WeChat sharing is limited. Copy text manually.");
-      //   return;
       default:
         return;
     }
@@ -155,7 +148,7 @@ const BookForm = () => {
                       className={`${css.field} ${
                         meta.touched && meta.error ? css.errorField : ""
                       }`}
-                      placeholder="From: address, airport, hotel"
+                      placeholder={t.booking.from}
                     />
                   )}
                 </Field>
@@ -175,7 +168,7 @@ const BookForm = () => {
                       className={`${css.field} ${
                         meta.touched && meta.error ? css.errorField : ""
                       }`}
-                      placeholder="To: address, airport, hotel"
+                      placeholder={t.booking.to}
                     />
                   )}
                 </Field>
@@ -186,7 +179,7 @@ const BookForm = () => {
             <div className={css.dateTime}>
             {/* Departure Date & Time */}
             <label className={css.label}>
-              <div><IoCalendarClearOutline size={20}/> Ride date</div>
+              <div><IoCalendarClearOutline size={20}/>{t.booking.date}</div>
               <Field name="departureDate">
                 {({ field, meta }) => (
                   <input
@@ -202,7 +195,7 @@ const BookForm = () => {
             </label>
 
             <label className={css.label}>
-              <div><AiOutlineClockCircle size={20} /> Pick-up time</div>
+              <div><AiOutlineClockCircle size={20} />{t.booking.time}</div>
               <div>
               <Field name="departureTime">
                 {({ field, meta }) => (
@@ -226,46 +219,12 @@ const BookForm = () => {
                   );
                 }}
               >
-                Now
+                {t.booking.now}
               </button>
                 <ErrorMessage name="departureTime" className={css.error} component="div" />
               </div>
               </label>
             </div>
-          
-            {/* <div className={css.dateTime}>
-            <label className={css.label}>
-              <div><IoCalendarClearOutline size={20}/> Desirable arrival date</div>
-              <Field name="desirableDate">
-                {({ field, meta }) => (
-                  <input
-                    {...field}
-                    type="date"
-                    className={`${css.field} ${
-                      meta.touched && meta.error ? css.errorField : ""
-                    }`}
-                  />
-                )}
-              </Field>
-              <ErrorMessage name="desirableDate" className={css.error} component="div" />
-            </label>
-
-            <label className={css.label}>
-              <div><AiOutlineClockCircle size={20}/> Desirable arrival time</div>
-              <Field name="desirableTime">
-                {({ field, meta }) => (
-                  <input
-                    {...field}
-                    type="time"
-                    className={`${css.field} ${
-                      meta.touched && meta.error ? css.errorField : ""
-                    }`}
-                  />
-                )}
-              </Field>
-              <ErrorMessage name="desirableTime" className={css.error} component="div" />
-              </label>
-            </div> */}
 
             {/* Return ride */}
             <label className={css.returnLabel}>
@@ -275,14 +234,14 @@ const BookForm = () => {
                 checked={values.returnRide}
                 onChange={() => setFieldValue("returnRide", !values.returnRide)}
               />
-              <span className={css.returnText}>Add return ride</span>
+              <span className={css.returnText}>{t.booking.return}</span>
             </label>
           
             <div className={css.dateTime}>
             {values.returnRide && (
               <>
                 <label className={css.label}>
-                  <div><IoCalendarClearOutline size={20}/> Return date</div>
+                  <div><IoCalendarClearOutline size={20}/>{t.booking.date}</div>
                   <Field name="returnDate">
                     {({ field, meta }) => (
                       <input
@@ -298,7 +257,7 @@ const BookForm = () => {
                 </label>
                 
                 <label className={css.label}>
-                  <div><AiOutlineClockCircle size={20}/> Return time</div>
+                  <div><AiOutlineClockCircle size={20}/>{t.booking.time}</div>
                   <Field name="returnTime">
                     {({ field, meta }) => (
                       <input
@@ -319,7 +278,7 @@ const BookForm = () => {
             {/* Passengers */}
           <div>
             <label className={css.label}>
-              <div><RxPerson size={20}/> Number of passengers 150+ cm</div>
+              <div><RxPerson size={20}/>{t.booking.passengers}</div>
               <Field name="adults">
                 {({ field, meta }) => (
                   <input
@@ -335,7 +294,7 @@ const BookForm = () => {
             </label>
 
             <label className={css.label}>
-              <div><RxPerson size={20}/> Number of passengers up to 150 cm</div>
+              <div><RxPerson size={20}/>{t.booking.kids}</div>
               <Field name="kids">
                 {({ field, meta }) => (
                   <input
@@ -354,8 +313,8 @@ const BookForm = () => {
             {/* Baby seats */}
             <label className={css.label}>
               <div>
-                Choose a baby seat
-                <HashLink smooth to="/#car"> (view photo in the gallery)</HashLink>
+                {t.booking.babySeat}
+                <HashLink smooth to="/#car">{t.booking.gallery}</HashLink>
               </div>
               
               <Field name="babySeats">
@@ -379,7 +338,7 @@ const BookForm = () => {
 
             {/* Luggage */}
             <label className={css.label}>
-              <div><BsLuggage size={20}/> Number of suitcases (excluding hand luggage)</div>
+              <div><BsLuggage size={20}/>{t.booking.luggage}</div>
               <Field name="suitcases">
                 {({ field, meta }) => (
                   <input
@@ -396,7 +355,7 @@ const BookForm = () => {
 
             {/* Animals */}
             <label className={css.label}>
-              <div><MdOutlinePets size={20}/> Animals</div>
+              <div><MdOutlinePets size={20}/>{t.booking.animals}</div>
               <Field name="animals">
                 {({ field, meta }) => (
                   <select
@@ -405,8 +364,8 @@ const BookForm = () => {
                       meta.touched && meta.error ? css.errorField : ""
                     }`}
                   >
-                    <option value="no">No</option>
-                    <option value="yes">Yes</option>
+                    <option value="no">{t.booking.no}</option>
+                    <option value="yes">{t.booking.yes}</option>
                   </select>
                 )}
               </Field>
@@ -417,7 +376,7 @@ const BookForm = () => {
             {values.animals === "yes" && (
               <>
                 <label className={css.label}>
-                  Type (dog,cat...)
+                  {t.booking.animalType}
                   <Field name="animalType">
                     {({ field, meta }) => (
                       <input
@@ -433,7 +392,7 @@ const BookForm = () => {
                 </label>
 
                 <label className={css.label}>
-                  Weight (kg)
+                  {t.booking.animalWeight}
                   <Field name="animalWeight">
                     {({ field, meta }) => (
                       <input
@@ -451,49 +410,9 @@ const BookForm = () => {
               )}
             </div>
 
-            
-            {/* <label className={css.label}>
-              Pickup sign
-              <Field name="pickupSign">
-                {({ field, meta }) => (
-                  <input
-                    {...field}
-                    type="text"
-                    className={`${css.field} ${
-                      meta.touched && meta.error ? css.errorField : ""
-                    }`}
-                    placeholder="Enter any information you would like to have written on the table"
-                  />
-                )}
-              </Field>
-              <ErrorMessage name="pickupSign" className={css.error} component="div" />
-            </label> */}
-
-{/*             
-            <label className={css.label}>
-              <div>
-                <PiSeatLight size={25} /> Seats placement
-                <HashLink smooth to="/#car">(view photo in the gallery)</HashLink>
-                </div>
-              <Field name="seats">
-                {({ field, meta }) => (
-                  <select
-                    {...field}
-                    className={`${css.field} ${
-                      meta.touched && meta.error ? css.errorField : ""
-                    }`}
-                  >
-                    <option value="usual">Usual placement</option>
-                    <option value="face">Face-to-face</option>
-                  </select>
-                )}
-              </Field>
-              <ErrorMessage name="seats" className={css.error} component="div" />
-            </label> */}
-
             {/* Comments */}
             <label className={css.label}>
-              Comments
+              {t.booking.message}
               <Field name="info">
                 {({ field, meta }) => (
                   <textarea
@@ -501,7 +420,7 @@ const BookForm = () => {
                     className={`${css.field} ${
                       meta.touched && meta.error ? css.errorField : ""
                     }`}
-                    placeholder="Any wishes, special needs or tasks"
+                    placeholder={t.booking.wishes}
                   />
                 )}
               </Field>
@@ -510,7 +429,7 @@ const BookForm = () => {
 
             {/* Submit */}
             <button type="submit" className={css.bookBtn}>
-              BOOK
+              {t.booking.submit}
             </button>
           </Form>
         )}

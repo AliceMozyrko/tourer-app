@@ -3,11 +3,12 @@ import { useLocation } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 import { FiMenu, FiX } from "react-icons/fi";
+import LanguageToggle from "../LanguageToggle/LanguageToggle";
 import clsx from "clsx";
 import logo from "../../../public/img/logo.png";
 import css from "./Navigation.module.css";
 
-const Navigation = () => {
+const Navigation = ({ language, setLanguage, t }) => {
   const { pathname } = useLocation();
   const isBookPage = pathname === "/book";
   const [isOpen, setIsOpen] = useState(false);
@@ -30,25 +31,29 @@ const Navigation = () => {
         <img src={logo} alt="logo" className={css.logo} />
       </NavLink>
 
+       <LanguageToggle 
+        language={language} 
+        onLanguageChange={setLanguage} 
+      />
       <div className={css.burger} onClick={toggleMenu}>
         {isOpen ? <FiX size={28} className={css.cross} /> : <FiMenu size={28} />}
       </div>
 
       <div className={clsx(css.links, isOpen && css.showMenu)}>
         <NavLink to="/" className={makeLinkClass} onClick={closeMenu}>
-          HOME
+          {t.nav.home}
         </NavLink>
         <HashLink smooth to="/#about" className={hashLinkClass} onClick={closeMenu}>
-          ABOUT US
+          {t.nav.about}
         </HashLink>
         <HashLink smooth to="/#car" className={hashLinkClass} onClick={closeMenu}>
-          OUR CAR
+          {t.nav.car}
         </HashLink>
         <HashLink smooth to="/#services" className={hashLinkClass} onClick={closeMenu}>
-          SERVICES
+          {t.nav.services}
         </HashLink>
         <NavLink to="/book" className={makeLinkClass} onClick={closeMenu}>
-          BOOK
+          {t.nav.book}
         </NavLink>
       </div>
     </nav>

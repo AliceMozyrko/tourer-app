@@ -11,20 +11,20 @@ import { PiBatteryChargingVerticalLight } from "react-icons/pi";
 import css from "./OurCar.module.css";
 
 const photos = [
-  { src: "/img/photos/IMG_20240702_164148-min.jpg", alt: "front-view", description: "Front view of the car" },
-  { src: "/img/photos/IMG_20210604_160608-min.jpg", alt: "4-4", description: "4x4" },
-  { src: "/img/photos/IMG_20220223_100816_1-min.jpg", alt: "baby-seats", description: "Baby seats" },
-  { src: "/img/photos/IMG_20240729_163145-min.jpg", alt: "seats-placement", description: "Seats placement" },
-  { src: "/img/photos/IMG_20210701_114923-min.jpg", alt: "trunk", description: "Trunk space" },
-  { src: "/img/photos/IMG_20210604_160417-min.jpg", alt: "driver-row", description: "Driver row" },
-  { src: "/img/photos/IMG_20240729_164038_1-min.jpg", alt: "2-row", description: "1st row seats" },
-  { src: "/img/photos/IMG_20240621_174544-min.jpg", alt: "back-seats", description: "2nd row seats" },
-  { src: "/img/photos/IMG_20240702_164457-min.jpg", alt: "door-entry", description: "Door entry" },
-  { src: "/img/photos/IMG_20241022_164807-min.jpg", alt: "car", description: "Car exterior" },
-  { src: "/img/photos/IMG_20241022_164815-min.jpg", alt: "car", description: "Another angle" }
+  { src: "/img/photos/IMG_20240702_164148-min.jpg", alt: "front-view", key: "frontView" },
+  { src: "/img/photos/IMG_20210604_160608-min.jpg", alt: "4-4", key: "4x4" },
+  { src: "/img/photos/IMG_20220223_100816_1-min.jpg", alt: "baby-seats", key: "babySeats" },
+  { src: "/img/photos/IMG_20240729_163145-min.jpg", alt: "seats-placement", key: "seatsPlacement" },
+  { src: "/img/photos/IMG_20210701_114923-min.jpg", alt: "trunk", key: "trunk" },
+  { src: "/img/photos/IMG_20210604_160417-min.jpg", alt: "driver-row", key: "driverRow" },
+  { src: "/img/photos/IMG_20240729_164038_1-min.jpg", alt: "2-row", key: "row1" },
+  { src: "/img/photos/IMG_20240621_174544-min.jpg", alt: "back-seats", key: "row2" },
+  { src: "/img/photos/IMG_20240702_164457-min.jpg", alt: "door-entry", key: "doorEntry" },
+  { src: "/img/photos/IMG_20241022_164807-min.jpg", alt: "car", key: "carExterior" },
+  { src: "/img/photos/IMG_20241022_164815-min.jpg", alt: "car", key: "carAngle" }
 ];
 
-const OurCar = ({id}) => {
+const OurCar = ({id, t}) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalStartIndex, setModalStartIndex] = useState(0);
   const [slidesToShow, setSlidesToShow] = useState(3);
@@ -102,30 +102,30 @@ const OurCar = ({id}) => {
 
   return (
     <div className={css.container} id={id}>
-      <h1 className={css.title}><PiSteeringWheel size={35} /> Our Car</h1>
+      <h1 className={css.title}><PiSteeringWheel size={35} />{t.car.title}</h1>
       <div className={css.descr}>
-        <p className={css.txt}>Everything is prepared for your comfort and safety</p>
+        <p className={css.txt}>{t.car.subtitle}</p>
           
           <div className={css.icons}>
             <div className={css.iconBox}>
               <IoWaterOutline size={45} className={css.icon}/>
-              <span className={css.label}>Water</span>
+              <span className={css.label}>{t.car.water}</span>
             </div>
             <div className={css.iconBox}>
               <IoWifiOutline size={45} className={css.icon}/>
-              <span className={css.label}>Wi-Fi</span>
+              <span className={css.label}>{t.car.wifi}</span>
             </div>
             <div className={css.iconBox}>
               <PiSnowflakeLight size={45} className={css.icon}/>
-              <span className={css.label}>AC</span>
+              <span className={css.label}>{t.car.ac}</span>
             </div>
             <div className={css.iconBox}>
               <PiBabyLight size={45} className={css.icon}/>
-              <span className={css.label}>Baby Seat</span>
+              <span className={css.label}>{t.car.babySeat}</span>
             </div>
             <div className={css.iconBox}>
               <PiBatteryChargingVerticalLight size={45} className={css.icon}/>
-              <span className={css.label}>Charger</span>
+              <span className={css.label}>{t.car.charger}</span>
             </div>
           </div>     
       </div>
@@ -139,7 +139,7 @@ const OurCar = ({id}) => {
       onClick={() => openModal(index)}
     >
       <img src={photo.src} alt={photo.alt} className={css.photo} />
-      <div className={css.description}>{photo.description}</div>
+      <div className={css.description}>{t.gallery[photo.key]}</div>
     </div>
   ))}
 </Slider>
@@ -152,7 +152,7 @@ const OurCar = ({id}) => {
         {photos.map((photo, index) => (
           <div key={index}>
             <img src={photo.src} alt={photo.alt} className={css.modalImage} />
-            <div className={css.modalDescription}>{photo.description}</div>
+            <div className={css.modalDescription}>{t.gallery[photo.key]}</div>
           </div>
         ))}
       </Slider>

@@ -1,0 +1,13 @@
+.toggle {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 20px;
+  background: transparent;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.3s;
+}
+
+.toggle:hover{
+  font-size: 18px;
+}
