@@ -9,7 +9,7 @@ import { AiOutlineClockCircle } from "react-icons/ai";
 import { RxPerson } from "react-icons/rx";
 import { BsLuggage } from "react-icons/bs";
 import { MdOutlinePets } from "react-icons/md";
-import { FaWhatsapp, FaViber, FaTelegram } from "react-icons/fa";
+import { FaWhatsapp, FaViber } from "react-icons/fa";
 
 import css from "./BookForm.module.css";
 
@@ -48,13 +48,13 @@ const BookForm = ({t}) => {
   returnRide: Yup.boolean(),
   returnDate: Yup.date().when("returnRide", {
     is: true,
-    then: (schema) => schema.required("Return date is required"), // ⬅️ ВИПРАВЛЕНО
-    otherwise: (schema) => schema.nullable(), // ⬅️ ДОДАНО
+    then: (schema) => schema.required("Return date is required"), 
+    otherwise: (schema) => schema.nullable(), 
   }),
   returnTime: Yup.string().when("returnRide", {
     is: true,
-    then: (schema) => schema.required("Return time is required"), // ⬅️ ВИПРАВЛЕНО
-    otherwise: (schema) => schema.nullable(), // ⬅️ ДОДАНО
+    then: (schema) => schema.required("Return time is required"),
+    otherwise: (schema) => schema.nullable(), 
   }),
   adults: Yup.number()
     .typeError("Enter a number")
@@ -64,7 +64,7 @@ const BookForm = ({t}) => {
     .typeError("Enter a number")
     .min(0, "Cannot be negative")
     .required("Number is required"),
-  babySeats: Yup.string().required("Choose a baby seat"), // ⬅️ ВИПРАВЛЕНО (прибрав nullable)
+  babySeats: Yup.string().required("Choose a baby seat"), 
   suitcases: Yup.number()
     .typeError("Enter a number")
     .min(0, "Cannot be negative")
@@ -73,15 +73,16 @@ const BookForm = ({t}) => {
   animals: Yup.string().oneOf(["yes", "no"]).required(),
   animalType: Yup.string().when("animals", {
     is: "yes",
-    then: (schema) => schema.required("Breed is required"), // ⬅️ ВИПРАВЛЕНО
-    otherwise: (schema) => schema.nullable(), // ⬅️ ДОДАНО
+    then: (schema) => schema.required("Breed is required"), 
+    otherwise: (schema) => schema.nullable(), 
   }),
   animalWeight: Yup.number().when("animals", {
     is: "yes",
     then: (schema) => schema
       .typeError("Enter a number")
-      .required("Weight is required"), // ⬅️ ВИПРАВЛЕНО
-    otherwise: (schema) => schema.nullable(), // ⬅️ ДОДАНО
+      .min(0, "Cannot be negative")
+      .required("Weight is required"), 
+    otherwise: (schema) => schema.nullable(), 
   }),
 });
 

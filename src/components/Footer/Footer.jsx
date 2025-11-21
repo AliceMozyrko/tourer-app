@@ -23,14 +23,19 @@ const Footer = ({t}) => {
       </NavLink>
       <p className={css.txt}>{t.footer.copyright}</p>
       <div className={css.socials}>
-        <a onClick={handleClick}><FaWhatsapp size={30} color="#25D366" /></a>
-        <a onClick={handleClick}><FaViber size={30} color="#665CAC" /></a>
-        <a
-          href="https://t.me/TourerUaBot"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <FaTelegram size={30} color="#0088cc" />
+        <div className={css.links}>
+          <a onClick={handleClick}><FaWhatsapp size={30} color="#25D366" /></a>
+          <a onClick={handleClick}><FaViber size={30} color="#665CAC" /></a>
+          <a
+            href="https://t.me/TourerUaBot"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <FaTelegram size={30} color="#0088cc" />
+          </a>
+        </div>     
+        <a href="tel:+380634943230" className={css.phone}>
+          +38 (063) 494 32 30
         </a>
       </div>
     </div>

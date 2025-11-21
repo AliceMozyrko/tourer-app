@@ -1,13 +1,21 @@
 .toggle {
-  padding: 8px 16px;
-  border: none;
+  border: 1px solid #2c2c2c;
   border-radius: 20px;
   background: transparent;
-  cursor: pointer;
   font-size: 16px;
   transition: all 0.3s;
 }
 
 .toggle:hover{
-  font-size: 18px;
+  font-size: 17px;
+}
+
+.beige {
+  color: beige; 
+}
+
+@media screen and (max-width: 768px) {
+  .toggle{
+    color: white;
+  }
 }

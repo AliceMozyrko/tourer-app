@@ -25,22 +25,18 @@ const Navigation = ({ language, setLanguage, t }) => {
    };
   const hashLinkClass = clsx(css.link, isBookPage && css.beige);
 
-  return (
+  return ( 
     <nav className={css.container}>
       <NavLink to="/" onClick={closeMenu}>
         <img src={logo} alt="logo" className={css.logo} />
       </NavLink>
-
-       <LanguageToggle 
-        language={language} 
-        onLanguageChange={setLanguage} 
-      />
+      
       <div className={css.burger} onClick={toggleMenu}>
         {isOpen ? <FiX size={28} className={css.cross} /> : <FiMenu size={28} />}
       </div>
 
       <div className={clsx(css.links, isOpen && css.showMenu)}>
-        <NavLink to="/" className={makeLinkClass} onClick={closeMenu}>
+          <NavLink to="/" className={makeLinkClass} onClick={closeMenu}>
           {t.nav.home}
         </NavLink>
         <HashLink smooth to="/#about" className={hashLinkClass} onClick={closeMenu}>
@@ -54,7 +50,12 @@ const Navigation = ({ language, setLanguage, t }) => {
         </HashLink>
         <NavLink to="/book" className={makeLinkClass} onClick={closeMenu}>
           {t.nav.book}
-        </NavLink>
+        </NavLink>  
+         <LanguageToggle 
+          language={language} 
+          onLanguageChange={setLanguage} 
+          className={css.langBtn}
+      />
       </div>
     </nav>
   );

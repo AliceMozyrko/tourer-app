@@ -185,7 +185,6 @@ a:hover {
   text-decoration: underline;
 }
 
-/* Modal styles */
 .modalOverlay {
   position: fixed;
   top: 0;
@@ -251,7 +250,6 @@ a:hover {
   background-color: #b3b3b3;
 }
 
-/* Tablet */
 @media screen and (min-width: 768px) {
   .container {
     padding: 40px 30px;
@@ -294,33 +292,45 @@ a:hover {
   }
 }
 
-/* Desktop */
 @media screen and (min-width: 1158px) {
   .container {
-    max-width: 1000px;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 25px 40px;
-    padding: 50px 40px;
+    max-width: 750px;
+    min-width: auto;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px 30px;
+    padding: 40px 45px;
+  }
+
+  .dateTime {
+    display: contents;
+  }
+
+  .dateTime .label {
+    flex: none;
   }
 
   .returnLabel {
+    grid-column: 1 / -1;
+    margin: 5px 0;
+    padding-top: 10px;
+    border-top: 1px solid #eee;
+  }
+
+  .container > .label:last-of-type {
     grid-column: 1 / -1;
   }
 
   .bookBtn {
     grid-column: 1 / -1;
-    max-width: 250px;
+    max-width: 220px;
+    margin-top: 10px;
   }
 
   .container::before {
-    left: -150px;
+    left: -100px;
   }
 
   .container::after {
-    right: -150px;
-  }
-
-  .label:last-of-type {
-    grid-column: 1 / -1;
+    right: -100px;
   }
 }
