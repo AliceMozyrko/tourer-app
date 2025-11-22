@@ -13,8 +13,7 @@ import { FaWhatsapp, FaViber } from "react-icons/fa";
 
 import css from "./BookForm.module.css";
 
-
-const PHONE = "+380638717366";
+const PHONE = "+380634943230";
 
 const BookForm = ({t}) => {
 
@@ -41,47 +40,47 @@ const BookForm = ({t}) => {
   };
 
   const bookSchema = Yup.object().shape({
-  departure: Yup.string().trim().required("Departure is required"),
-  destination: Yup.string().trim().required("Destination is required"),
-  departureDate: Yup.date().required("Departure date is required"),
-  departureTime: Yup.string().required("Departure time is required"),
+  departure: Yup.string().trim().required(t.errors.depart),
+  destination: Yup.string().trim().required(t.errors.dest),
+  departureDate: Yup.date().required(t.errors.date),
+  departureTime: Yup.string().required(t.errors.time),
   returnRide: Yup.boolean(),
   returnDate: Yup.date().when("returnRide", {
     is: true,
-    then: (schema) => schema.required("Return date is required"), 
+    then: (schema) => schema.required(t.errors.returndate), 
     otherwise: (schema) => schema.nullable(), 
   }),
   returnTime: Yup.string().when("returnRide", {
     is: true,
-    then: (schema) => schema.required("Return time is required"),
+    then: (schema) => schema.required(t.errors.returntime),
     otherwise: (schema) => schema.nullable(), 
   }),
   adults: Yup.number()
-    .typeError("Enter a number")
-    .min(1, "At least 1 adult")
-    .required("Number of adults is required"),
+    .typeError(t.errors.number)
+    .min(1, t.errors.adult)
+    .required(t.errors.adultnum),
   kids: Yup.number()
-    .typeError("Enter a number")
-    .min(0, "Cannot be negative")
-    .required("Number is required"),
-  babySeats: Yup.string().required("Choose a baby seat"), 
+    .typeError(t.errors.number)
+    .min(0, t.errors.negative)
+    .required(t.errors.required),
+  babySeats: Yup.string().required(t.errors.baby), 
   suitcases: Yup.number()
-    .typeError("Enter a number")
-    .min(0, "Cannot be negative")
-    .required("Number of suitcases is required"),
-  info: Yup.string().max(500, "Too long"),
+    .typeError(t.errors.number)
+    .min(0, t.errors.negative)
+    .required(t.errors.suitCases),
+  info: Yup.string().max(500, t.errors.long),
   animals: Yup.string().oneOf(["yes", "no"]).required(),
   animalType: Yup.string().when("animals", {
     is: "yes",
-    then: (schema) => schema.required("Breed is required"), 
+    then: (schema) => schema.required(t.errors.breed), 
     otherwise: (schema) => schema.nullable(), 
   }),
   animalWeight: Yup.number().when("animals", {
     is: "yes",
     then: (schema) => schema
-      .typeError("Enter a number")
-      .min(0, "Cannot be negative")
-      .required("Weight is required"), 
+      .typeError()
+      .min(0, t.errors.negative)
+      .required(t.errors.reqweight), 
     otherwise: (schema) => schema.nullable(), 
   }),
 });
@@ -89,7 +88,7 @@ const BookForm = ({t}) => {
   const handleSubmit = (values) => {
   setFormData(values);
   setIsModalOpen(true);
-  toast.success("Almost done! Choose a messenger 👇");
+  toast.success(t.errors.messanger);
 };
 
   const formatMessage = (data) => {
@@ -116,10 +115,7 @@ const BookForm = ({t}) => {
         url = `https://wa.me/${PHONE}?text=${text}`;
         break;
       case "viber":
-        url = `viber://chat?number=${PHONE}?text=${text}`;
-        break;
-      case "telegram":
-        url = `https://t.me/MozyrkoYevhen?text=${text}`
+        url = `viber://chat?number=%2B380634943230&draft=${text}`;
         break;
       default:
         return;
@@ -326,11 +322,11 @@ const BookForm = ({t}) => {
                       meta.touched && meta.error ? css.errorField : ""
                     }`}
                   >
-                    <option value="default">Select</option>
-                    <option value="infant">Infant carrier (up to 10 kg)</option>
-                    <option value="child">Convertible seat (10–21 kg)</option>
-                    <option value="booster">Booster seat (22–36 kg)</option>
-                    <option value="no">No need</option>
+                    <option value="default">{t.booking.select}</option>
+                    <option value="infant">{t.booking.infant}</option>
+                    <option value="child">{t.booking.convertible}</option>
+                    <option value="booster">{t.booking.booster}</option>
+                    <option value="no">{t.booking.noneed}</option>
                   </select>
                 )}
               </Field>

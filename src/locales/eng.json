@@ -83,7 +83,7 @@
     "time": "Ride time",
     "now": "Now",
     "return": "Add return ride",
-    "passengers": "Number of Passengers",
+    "passengers": "Number of Passengers 150+ cm.",
     "kids": "Number of passengers up to 150 cm",
     "luggage": "Number of suitcases (excluding hand luggage)",
     "babySeat": "Choose a baby seat",
@@ -93,6 +93,11 @@
     "yes": "Yes",
     "animalType": "Type (dog,cat...)",
     "animalWeight": "Weight (kg)",
+    "select": "Select",
+    "infant": "Infant carrier (up to 10 kg)",
+    "convertible": "Convertible seat (10–21 kg)",
+    "booster": "Booster seat (22–36 kg)",
+    "noneed": "No need",
     "message": "Comments",
     "wishes": "Any wishes, special needs or tasks",
     "submit": "Book Now",
@@ -101,5 +106,26 @@
   },
   "footer": {
     "copyright": "© 2025 Tourer. All rights reserved."
+  },
+  "errors": {
+    "depart": "Departure is required",
+    "dest": "Destination is required",
+    "date": "Departure date is required",
+    "time": "Departure time is required",
+    "returndate": "Return date is required",
+    "returntime": "Return time is required",
+    "number": "Enter a number",
+    "adult": "At least 1 adult",
+    "adultnum": "Number of adults is required",
+    "negative": "Cannot be negative",
+    "required": "Number is required",
+    "baby": "Choose a baby seat",
+    "suitCases": "Number of suitcases is required",
+    "long": "Too long",
+    "yes": "yes",
+    "no": "no",
+    "breed": "Breed is required",
+    "reqweight": "Weight is required",
+    "messanger": "Almost done! Choose a messenger 👇"
   }
 }

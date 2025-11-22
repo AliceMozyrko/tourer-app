@@ -12,6 +12,8 @@ const texts = {
   en: {
     chooseLanguage: '🌐 Choose your language:',
     langChanged: '✅ Language set to English',
+    contact: '📞 Your contact (phone or @telegram):',
+    contactLabel: 'Contact',
     from: '📍 From: Enter departure address, airport, hotel',
     to: '📍 To: Enter destination address, airport, hotel',
     departureDate: '📅 Departure date (YYYY-MM-DD)',
@@ -55,6 +57,8 @@ const texts = {
   uk: {
     chooseLanguage: '🌐 Оберіть мову:',
     langChanged: '✅ Мову змінено на українську',
+    contact: '📞 Ваш контакт (телефон або @telegram):',
+    contactLabel: 'Контакт',
     from: '📍 Звідки: Введіть адресу, аеропорт, готель',
     to: '📍 Куди: Введіть адресу, аеропорт, готель',
     departureDate: '📅 Дата виїзду (РРРР-ММ-ДД)',
@@ -97,7 +101,6 @@ const texts = {
   },
 };
 
-// Зберігання мови користувачів
 const userLanguages = {};
 
 const t = (ctx, key) => {
@@ -123,7 +126,7 @@ const bookingWizard = new WizardScene(
     return ctx.wizard.next();
   },
 
-  // 1. Після вибору мови → Departure
+  // 1. Після вибору мови → Contact
   (ctx) => {
     if (ctx.updateType !== 'callback_query') return;
     const lang = ctx.update.callback_query.data.replace('lang_', '');
@@ -132,39 +135,46 @@ const bookingWizard = new WizardScene(
     ctx.answerCbQuery();
 
     ctx.wizard.state.booking = {};
+    ctx.reply(t(ctx, 'contact'));
+    return ctx.wizard.next();
+  },
+
+  // 2. Contact → Departure
+  (ctx) => {
+    ctx.wizard.state.booking.contact = ctx.message.text;
     ctx.reply(t(ctx, 'from'));
     return ctx.wizard.next();
   },
 
-  // 2. Destination
+  // 3. Destination
   (ctx) => {
     ctx.wizard.state.booking.departure = ctx.message.text;
     ctx.reply(t(ctx, 'to'));
     return ctx.wizard.next();
   },
 
-  // 3. Departure date
+  // 4. Departure date
   (ctx) => {
     ctx.wizard.state.booking.destination = ctx.message.text;
     ctx.reply(t(ctx, 'departureDate'));
     return ctx.wizard.next();
   },
 
-  // 4. Departure time
+  // 5. Departure time
   (ctx) => {
     ctx.wizard.state.booking.departureDate = ctx.message.text;
     ctx.reply(t(ctx, 'departureTime'));
     return ctx.wizard.next();
   },
 
-  // 5. Desirable arrival date
+  // 6. Desirable arrival date
   (ctx) => {
     ctx.wizard.state.booking.departureTime = ctx.message.text;
     ctx.reply(t(ctx, 'desirableDate'));
     return ctx.wizard.next();
   },
 
-  // 6. Desirable arrival time
+  // 7. Desirable arrival time
   (ctx) => {
     ctx.wizard.state.booking.desirableDate =
       ctx.message.text !== 'skip' ? ctx.message.text : '';
@@ -172,7 +182,7 @@ const bookingWizard = new WizardScene(
     return ctx.wizard.next();
   },
 
-  // 7. Return ride?
+  // 8. Return ride?
   (ctx) => {
     ctx.wizard.state.booking.desirableTime =
       ctx.message.text !== 'skip' ? ctx.message.text : '';
@@ -187,7 +197,7 @@ const bookingWizard = new WizardScene(
     return ctx.wizard.next();
   },
 
-  // 8. Return date/time logic
+  // 9. Return date/time logic
   (ctx) => {
     if (ctx.updateType !== 'callback_query') return;
     const data = ctx.update.callback_query.data;
@@ -201,25 +211,25 @@ const bookingWizard = new WizardScene(
       ctx.wizard.state.booking.returnDate = '';
       ctx.wizard.state.booking.returnTime = '';
       ctx.reply(t(ctx, 'adults'));
-      return ctx.wizard.selectStep(11);
+      return ctx.wizard.selectStep(12);
     }
   },
 
-  // 9. Return date
+  // 10. Return date
   (ctx) => {
     ctx.wizard.state.booking.returnDate = ctx.message.text;
     ctx.reply(t(ctx, 'returnTime'));
     return ctx.wizard.next();
   },
 
-  // 10. Return time
+  // 11. Return time
   (ctx) => {
     ctx.wizard.state.booking.returnTime = ctx.message.text;
     ctx.reply(t(ctx, 'adults'));
     return ctx.wizard.next();
   },
 
-  // 11. Adults
+  // 12. Adults
   (ctx) => {
     const val = Number(ctx.message.text);
     if (!isPositiveNumber(ctx.message.text) || val < 1) {
@@ -231,7 +241,7 @@ const bookingWizard = new WizardScene(
     return ctx.wizard.next();
   },
 
-  // 12. Kids
+  // 13. Kids
   (ctx) => {
     const val = Number(ctx.message.text);
     if (!isPositiveNumber(ctx.message.text)) {
@@ -252,7 +262,7 @@ const bookingWizard = new WizardScene(
     return ctx.wizard.next();
   },
 
-  // 13. Baby seat
+  // 14. Baby seat
   (ctx) => {
     if (ctx.updateType !== 'callback_query') return;
     ctx.wizard.state.booking.babySeats = ctx.update.callback_query.data;
@@ -261,7 +271,7 @@ const bookingWizard = new WizardScene(
     return ctx.wizard.next();
   },
 
-  // 14. Suitcases
+  // 15. Suitcases
   (ctx) => {
     const val = Number(ctx.message.text);
     if (!isPositiveNumber(ctx.message.text)) {
@@ -280,7 +290,7 @@ const bookingWizard = new WizardScene(
     return ctx.wizard.next();
   },
 
-  // 15. Animals
+  // 16. Animals
   (ctx) => {
     if (ctx.updateType !== 'callback_query') return;
     ctx.wizard.state.booking.animals =
@@ -294,19 +304,19 @@ const bookingWizard = new WizardScene(
       ctx.wizard.state.booking.animalType = '';
       ctx.wizard.state.booking.animalWeight = '';
       ctx.reply(t(ctx, 'comments'));
-      ctx.wizard.cursor = 18;
+      ctx.wizard.cursor = 19;
       return;
     }
   },
 
-  // 16. Animal type
+  // 17. Animal type
   (ctx) => {
     ctx.wizard.state.booking.animalType = ctx.message.text;
     ctx.reply(t(ctx, 'animalWeight'));
     return ctx.wizard.next();
   },
 
-  // 17. Animal weight
+  // 18. Animal weight
   (ctx) => {
     const val = Number(ctx.message.text);
     if (!isPositiveNumber(ctx.message.text)) {
@@ -318,7 +328,7 @@ const bookingWizard = new WizardScene(
     return ctx.wizard.next();
   },
 
-  // 18. Comments & Finish
+  // 19. Comments & Finish
   (ctx) => {
     ctx.wizard.state.booking.info = ctx.message.text || '—';
     const b = ctx.wizard.state.booking;
@@ -327,6 +337,7 @@ const bookingWizard = new WizardScene(
 
     const message = `
 ${txt.newBooking}
+📞 ${txt.contactLabel}: ${b.contact}
 ${txt.fromLabel}: ${b.departure}
 ${txt.toLabel}: ${b.destination}
 ${txt.departureLabel}: ${b.departureDate} ${b.departureTime}
