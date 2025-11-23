@@ -75,6 +75,22 @@
     "saleDate": "05/09/25",
     "saleCta": "BOOK"
   },
+  "attranctionLinks": {
+    "arch": "https://en.wikipedia.org/wiki/People%27s_Friendship_Arch",
+    "lavra": "https://en.wikipedia.org/wiki/Kyiv_Pechersk_Lavra",
+    "sophia": "https://en.wikipedia.org/wiki/Saint_Sophia%27s_Cathedral,_Kyiv",
+    "michael": "https://en.wikipedia.org/wiki/St._Michael%27s_Golden-Domed_Monastery",
+    "chimaeras": "https://en.wikipedia.org/wiki/House_with_Chimaeras",
+    "botanica": "https://en.wikipedia.org/wiki/Hryshko_National_Botanical_Garden",
+    "mother": "https://en.wikipedia.org/wiki/Mother_Ukraine",
+    "andrew": "https://en.wikipedia.org/wiki/St_Andrew%27s_Church,_Kyiv",
+    "descent": "https://en.wikipedia.org/wiki/Andriivskyi_Descent",
+    "palace": "https://en.wikipedia.org/wiki/Mariinskyi_Palace",
+    "feofania": "https://en.wikipedia.org/wiki/Feofaniya",
+    "opera": "https://en.wikipedia.org/wiki/National_Opera_of_Ukraine",
+    "fortress": "https://en.wikipedia.org/wiki/Kyiv_Fortress",
+    "gate": "https://en.wikipedia.org/wiki/Golden_Gate,_Kyiv"
+  },
   "booking": {
     "title": "Book Your Trip",
     "from": "From: address, airport, hotel",

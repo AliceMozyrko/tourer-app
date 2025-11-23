@@ -55,7 +55,7 @@
     "tourTitle": "Екскурсія Києвом",
     "tourSubtitle": "Натисніть на пам'ятку, щоб дізнатися більше",
     "attraction1": "Арка Свободи Українського Народу",
-    "attraction2": "Паркові мости",
+    "attraction2": "Парковий міст",
     "attraction3": "Києво-Печерська лавра",
     "attraction4": "Софійський собор",
     "attraction5": "Михайлівський золотоверхий монастир",
@@ -74,6 +74,22 @@
     "saleRoute": "Київ - Варшава",
     "saleDate": "05/09/25",
     "saleCta": "ЗАБРОНЮВАТИ"
+  },
+    "attranctionLinks": {
+    "arch": "https://uk.wikipedia.org/wiki/Арка_Свободи_українського_народу",
+    "lavra": "https://uk.wikipedia.org/wiki/Києво-Печерська_лавра",
+    "sophia": "https://uk.wikipedia.org/wiki/Софійський_собор_(Київ)",
+    "michael": "https://uk.wikipedia.org/wiki/Михайлівський_Золотоверхий_монастир",
+    "chimaeras": "https://uk.wikipedia.org/wiki/Будинок_із_химерами",
+    "botanica": "https://uk.wikipedia.org/wiki/Національний_ботанічний_сад_імені_М._М._Гришка_НАН_України",
+    "mother": "https://uk.wikipedia.org/wiki/Батьківщина-Мати_(Київ)",
+    "andrew": "https://uk.wikipedia.org/wiki/Андріївська_церква",
+    "descent": "https://uk.wikipedia.org/wiki/Андріївський_узвіз",
+    "palace": "https://uk.wikipedia.org/wiki/Маріїнський_палац",
+    "feofania": "https://uk.wikipedia.org/wiki/Феофанія",
+    "opera": "https://uk.wikipedia.org/wiki/Національний_академічний_театр_опери_та_балету_України_імені_Тараса_Шевченка",
+    "fortress": "https://uk.wikipedia.org/wiki/Київська_фортеця",
+    "gate": "https://uk.wikipedia.org/wiki/Золоті_ворота_(Київ)"
   },
   "booking": {
     "title": "Забронювати поїздку",

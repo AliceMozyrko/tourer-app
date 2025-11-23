@@ -14,7 +14,7 @@ const Services = ({id, t}) => {
  const guideList = [
   {
     name: "attraction1",
-    link: "https://en.wikipedia.org/wiki/People%27s_Friendship_Arch"
+    link: t.attranctionLinks.arch
   },
   {
     name: "attraction2",
@@ -22,55 +22,55 @@ const Services = ({id, t}) => {
   },
   {
     name: "attraction3",
-    link: "https://en.wikipedia.org/wiki/Kyiv_Pechersk_Lavra"
+    link: t.attranctionLinks.lavra
   },
   {
     name: "attraction4",
-    link: "https://en.wikipedia.org/wiki/Saint_Sophia%27s_Cathedral,_Kyiv"
+    link: t.attranctionLinks.sophia
   },
   {
     name: "attraction5",
-    link: "https://en.wikipedia.org/wiki/St._Michael%27s_Golden-Domed_Monastery"
+    link: t.attranctionLinks.michael
   },
   {
     name: "attraction6",
-    link: "https://en.wikipedia.org/wiki/House_with_Chimaeras"
+    link: t.attranctionLinks.chimaeras
   },
   {
     name: "attraction7",
-    link: "https://en.wikipedia.org/wiki/Hryshko_National_Botanical_Garden"
+    link: t.attranctionLinks.botanica
   },
   {
     name: "attraction8",
-    link: "https://en.wikipedia.org/wiki/Mother_Ukraine"
+    link: t.attranctionLinks.mother
   },
   {
     name: "attraction9",
-    link: "https://en.wikipedia.org/wiki/St._Andrew%27s_Church,_Kyiv"
+    link: t.attranctionLinks.andrew
   },
   {
     name: "attraction10",
-    link: "https://en.wikipedia.org/wiki/St_Andrew%27s_Church,_Kyiv"
+    link: t.attranctionLinks.descent
   },
   {
     name: "attraction11",
-    link: "https://en.wikipedia.org/wiki/Mariinskyi_Palace"
+    link: t.attranctionLinks.palace
   },
   {
     name: "attraction12",
-    link: "https://en.wikipedia.org/wiki/Feofaniya"
+    link: t.attranctionLinks.feofania
   },
   {
     name: "attraction13",
-    link: "https://en.wikipedia.org/wiki/National_Opera_of_Ukraine"
+    link: t.attranctionLinks.opera
   },
   {
     name: "attraction14",
-    link: "https://en.wikipedia.org/wiki/Kyiv_Fortress"
+    link: t.attranctionLinks.fortress
   },
   {
     name: "attraction15",
-    link: "https://en.wikipedia.org/wiki/Golden_Gate,_Kyiv"
+    link: t.attranctionLinks.gate
   }
 ];
   

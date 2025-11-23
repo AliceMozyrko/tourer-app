@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { FaWhatsapp, FaViber, FaTelegram } from "react-icons/fa";
 import css from "./ModalBook.module.css";
 
-const ModalBook = ({ isOpen, onClose, onMessengerClick }) => {
+const ModalBook = ({ isOpen, onClose }) => {
   const navigate = useNavigate();
   if (!isOpen) return null; 
 
@@ -23,7 +23,7 @@ const ModalBook = ({ isOpen, onClose, onMessengerClick }) => {
 
           <button
             type="button"
-            onClick={() => onMessengerClick("viber")}
+            onClick={() => navigate("/book")}
             className={css.messengerBtn}
           >
             <FaViber size={40} color="#665CAC" />
