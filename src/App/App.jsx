@@ -4,6 +4,7 @@ import { Route, Routes } from "react-router-dom";
 import Loader from "../components/Loader/Loader";
 import en from "../locales/eng.json";
 import uk from "../locales/uk.json";
+import Seo from "../components/Seo";
 
 const HomePage = lazy(() => import("../pages/HomePage/HomePage"))
 const BookPage = lazy(() => import("../pages/BookPage/BookPage"))
@@ -15,7 +16,9 @@ function App() {
   const t = language === "en" ? en : uk;
 
     return (
-    <Suspense fallback={<Loader />}>
+      <Suspense fallback={<Loader />}>
+        <Seo language={language} />
+        
       <Routes>
         <Route 
           path="/" 
